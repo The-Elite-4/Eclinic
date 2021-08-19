@@ -9,5 +9,4 @@ public class EclinicApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EclinicApplication.class, args);
 	}
-
 }
