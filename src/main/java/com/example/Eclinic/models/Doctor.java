@@ -1,13 +1,18 @@
 package com.example.Eclinic.models;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Doctor {
+public class Doctor implements UserDetails {
+    ////////////////////////////////////fields////////////////////////////////////////
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,12 +23,11 @@ public class Doctor {
     private String lastName;
     private String profilePic; //we might make it uploaded
     private String signatureUrl;
-    private boolean gender;
+    private String gender;
     private Integer phoneNumber;
 
-
     private Integer certificateId;
-    private String doctorRole;
+    private String doctorMajor;
 
     @ManyToOne
     private Clinic clinic;
@@ -31,4 +35,163 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor")
     private Set<Prescription> prescription = new HashSet<Prescription>();
 
+
+    ////////////////////////////////////constructor//////////////////////////////////////
+
+    public Doctor() {
+    }
+
+    public Doctor(String userName, String password, String firstName, String lastName, String profilePic,
+                  String signatureUrl, String gender, Integer phoneNumber, Integer certificateId, String doctorMajor
+            , Clinic clinic) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profilePic = profilePic;
+        this.signatureUrl = signatureUrl;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.certificateId = certificateId;
+        this.doctorMajor = doctorMajor;
+        this.clinic = clinic;
+    }
+
+    ////////////////////////////////////methods//////////////////////////////////////////
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    ////////////////////////////////////setters and getters//////////////////////////////////////
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getSignatureUrl() {
+        return signatureUrl;
+    }
+
+    public void setSignatureUrl(String signatureUrl) {
+        this.signatureUrl = signatureUrl;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Integer getCertificateId() {
+        return certificateId;
+    }
+
+    public void setCertificateId(Integer certificateId) {
+        this.certificateId = certificateId;
+    }
+
+    public String getDoctorMajor() {
+        return doctorMajor;
+    }
+
+    public void setDoctorMajor(String doctorMajor) {
+        this.doctorMajor = doctorMajor;
+    }
+
+    public Clinic getClinic() {
+        return clinic;
+    }
+
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
+    }
+
+    public Set<Prescription> getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(Set<Prescription> prescription) {
+        this.prescription = prescription;
+    }
 }

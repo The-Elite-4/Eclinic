@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Entity
 public class Clinic {
-
+    ////////////////////////////////////fields////////////////////////////////////////
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,8 +33,13 @@ public class Clinic {
     @ManyToOne
     private Admin admin;
 
-    @OneToOne
-    private SubAdmin subAdmin;
+//    @OneToOne(mappedBy = "clinic")
+//    @JoinColumn(name = "subAdmin_id", referencedColumnName = "id")
+//    private SubAdmin subAdmin;
+    ///////////////////////////////////////// new
+    @OneToMany(mappedBy = "clinic")
+    private Set<SubAdmin> subAdmin = new HashSet<>();
+    /////////////////////////////////////////
 
     @OneToMany(mappedBy = "clinic")
     private Set<Secretary> secretary = new HashSet<Secretary>();
@@ -45,12 +50,23 @@ public class Clinic {
     @OneToMany(mappedBy = "clinic")
     private Set<Patient> patient = new HashSet<Patient>();
 
+    ///////////////////////////////////////// constructor ///////////////////////////////////////
 
+    public Clinic() {
+    }
 
-    //don't forget to add the sub admin managing this clinic
-    //don't forget the constructor
+    public Clinic(String name, String address, String description, Integer phoneNumber, Integer licenseId,
+                  String logo, Admin admin) {
+        this.name = name;
+        this.address = address;
+        this.description = description;
+        this.phoneNumber = phoneNumber;
+        this.licenseId = licenseId;
+        this.logo = logo;
+        this.admin = admin;
+    }
 
-
+    /////////////////////////////////////// setters and getters ////////////////////////////////////
     public Integer getId() {
         return id;
     }
@@ -98,4 +114,61 @@ public class Clinic {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Integer getLicenseId() {
+        return licenseId;
+    }
+
+    public void setLicenseId(Integer licenseId) {
+        this.licenseId = licenseId;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Set<SubAdmin> getSubAdmin() {
+        return subAdmin;
+    }
+
+    public void setSubAdmin(Set<SubAdmin> subAdmin) {
+        this.subAdmin = subAdmin;
+    }
+
+    public Set<Secretary> getSecretary() {
+        return secretary;
+    }
+
+    public void setSecretary(Set<Secretary> secretary) {
+        this.secretary = secretary;
+    }
+
+    public Set<Doctor> getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Set<Doctor> doctor) {
+        this.doctor = doctor;
+    }
+
+    public Set<Patient> getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Set<Patient> patient) {
+        this.patient = patient;
+    }
+
 }

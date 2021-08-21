@@ -1,5 +1,8 @@
 package com.example.Eclinic.security;
 
+import com.example.Eclinic.models.SubAdmin;
+import com.example.Eclinic.repositories.SubAdminRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -7,16 +10,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SubAdminDetailsServiceImpl implements UserDetailsService {
-//    @Autowired
-//    ApplicationUserRepository applicationUserRepository;
+    @Autowired
+    SubAdminRepo subAdminRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        ApplicationUser user = applicationUserRepository.findByUsername(username);
-//        if(user == null){
-//            throw new UsernameNotFoundException("The user ("+username+") not found");
-//        }
-//        return user;
-        return null;
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        SubAdmin subAdmin = subAdminRepo.findByUserName(userName);
+        if(subAdmin == null){
+            throw new UsernameNotFoundException("The user ("+userName+") not found");
+        }
+        return subAdmin;
     }
 }
