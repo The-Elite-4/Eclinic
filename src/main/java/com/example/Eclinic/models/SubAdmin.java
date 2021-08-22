@@ -1,11 +1,14 @@
 package com.example.Eclinic.models;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class SubAdmin implements UserDetails {
@@ -14,7 +17,7 @@ public class SubAdmin implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-    private String userName;
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
@@ -23,6 +26,8 @@ public class SubAdmin implements UserDetails {
     private boolean isEnabled;
     // verification fields
     private Integer licenseId;
+
+    private String authority = "SubAdmin";
 
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "clinic_id", referencedColumnName = "id")
@@ -36,9 +41,9 @@ public class SubAdmin implements UserDetails {
     public SubAdmin() {
     }
 
-    public SubAdmin(String userName, String password, String firstName, String lastName, String profilePic,
+    public SubAdmin(String username, String password, String firstName, String lastName, String profilePic,
                     String gender, Integer licenseId, Clinic clinic) {
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -52,7 +57,10 @@ public class SubAdmin implements UserDetails {
     ////////////////////////////////////methods//////////////////////////////////////
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(this.authority);
+        List<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
+        userAuthorities.add(simpleGrantedAuthority);
+        return userAuthorities;
     }
 
     @Override
@@ -62,7 +70,7 @@ public class SubAdmin implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
@@ -94,12 +102,8 @@ public class SubAdmin implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
