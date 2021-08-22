@@ -16,7 +16,7 @@ public class Admin implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-    private String userName;
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
@@ -30,8 +30,8 @@ public class Admin implements UserDetails {
     public Admin() {
     }
 
-    public Admin(String userName, String password, String firstName, String lastName, String profilePic) {
-        this.userName = userName;
+    public Admin(String username, String password, String firstName, String lastName, String profilePic) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,7 +51,7 @@ public class Admin implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
@@ -84,12 +84,8 @@ public class Admin implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/headerFooterStyle.css}">
-    <link rel="stylesheet" th:href="@{/css/signupStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/signupLoginStyle.css}">
     <title>Signup page</title>
 </head>
 <body>
 <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
-<div class="signup-form-container">
+<div class="form-container">
     <form action="/signup" method="post" th:object="${subAdmin}">
         <h2>Sub admin info</h2>
         <div class="mb-3">
@@ -71,5 +71,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<div th:replace="footer :: footer"></div><!---------- this is fragment ------------>
 </body>
 </html>
