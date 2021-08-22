@@ -14,10 +14,10 @@ public class SubAdminDetailsServiceImpl implements UserDetailsService {
     SubAdminRepo subAdminRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        SubAdmin subAdmin = subAdminRepo.findByUserName(userName);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        SubAdmin subAdmin = subAdminRepo.findByUsername(username);
         if(subAdmin == null){
-            throw new UsernameNotFoundException("The user ("+userName+") not found");
+            throw new UsernameNotFoundException("The user ("+username+") not found");
         }
         return subAdmin;
     }
