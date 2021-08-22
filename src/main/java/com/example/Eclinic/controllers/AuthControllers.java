@@ -7,6 +7,7 @@ import com.example.Eclinic.repositories.AdminRepo;
 import com.example.Eclinic.repositories.ClinicRepo;
 import com.example.Eclinic.repositories.SubAdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 
 @Controller
 public class AuthControllers {
@@ -66,5 +68,19 @@ public class AuthControllers {
     @GetMapping("/login")
     public String getLoginPage(){
         return "login.html";
+    }
+
+    ////////////////////////////////////////// redircet to dashboard page //////////////////////
+    @GetMapping("/myDashboard")
+    public String getDashbaordPage(Model model, Principal p){
+
+        if(p.getName().contains("SubAdmin"))
+            return "subAdmindashboard.html";
+        else if (p.getName().contains("Doctor"))
+            return "doctordashboard.html";
+        else if(p.getName().contains("Admin"))
+            return "adminPanel.html";
+        else
+            return "secretarydashboard.html";
     }
 }

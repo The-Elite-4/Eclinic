@@ -75,6 +75,9 @@ footer
     line-height: 15px;
     text-align: left;
 }
+.quick-info li, .social-icon li{
+    list-style-type: none;
+}
 .social-icon li {
     float: left;
     width: 50px;
