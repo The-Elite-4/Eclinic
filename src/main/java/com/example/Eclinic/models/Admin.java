@@ -2,12 +2,11 @@ package com.example.Eclinic.models;
 
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Admin implements UserDetails {
@@ -21,6 +20,7 @@ public class Admin implements UserDetails {
     private String firstName;
     private String lastName;
     private String profilePic; //we might make it uploaded
+    private String authority = "Admin";
 
     @OneToMany(mappedBy = "admin")
     private Set<Clinic> clinic = new HashSet<Clinic>();
@@ -41,7 +41,10 @@ public class Admin implements UserDetails {
     ///////////////////////////////////////methods//////////////////////////////////////////
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(this.authority);
+        List<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
+        userAuthorities.add(simpleGrantedAuthority);
+        return userAuthorities;
     }
 
     @Override
