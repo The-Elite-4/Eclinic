@@ -1,11 +1,7 @@
 package com.example.Eclinic.controllers;
 
-import com.example.Eclinic.models.Admin;
-import com.example.Eclinic.models.Clinic;
-import com.example.Eclinic.models.SubAdmin;
-import com.example.Eclinic.repositories.AdminRepo;
-import com.example.Eclinic.repositories.ClinicRepo;
-import com.example.Eclinic.repositories.SubAdminRepo;
+import com.example.Eclinic.models.*;
+import com.example.Eclinic.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,6 +27,10 @@ public class AuthControllers {
     AdminRepo adminRepo;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    DoctorRepo doctorRepo;
+    @Autowired
+    SecretaryRepo secretaryRepo;
 
     /////////////////////////////////////// home /////////////////////////////////////////
     @GetMapping("/")
@@ -40,6 +40,15 @@ public class AuthControllers {
 //                ".com/dms/image/C5603AQE5WQzUEDuh3w/profile-displayphoto-shrink_400_400/0/1617614323444?e=1634774400&v=beta&t=HS-HtxM7Mc2i_7cdUcv8dpEwaitTxnH_nYP9zMwqpPM");
 //        admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
 //        adminRepo.save(admin);
+
+//        Secretary secretary = new Secretary("batata","12345", "batata", "batata", "Vegetables", 2131, "fjldasj", clinicRepo.findById(1).get());
+//        secretary.setPassword(bCryptPasswordEncoder.encode(secretary.getPassword()));
+//        secretaryRepo.save(secretary);
+
+//        Doctor doctor = new Doctor("Berg", "12345", "James", "Berg", "ladsjf", "sldajfla" , "Male", 123,  123, "Back pain", clinicRepo.findById(1).get());
+//        doctor.setPassword(bCryptPasswordEncoder.encode(doctor.getPassword()));
+//        doctorRepo.save(doctor);
+
 
         return "home.html";
     }
@@ -75,15 +84,17 @@ public class AuthControllers {
 
     ////////////////////////////////////////// redircet to dashboard page //////////////////////
     @GetMapping("/myDashboard")
-    public String getDashbaordPage(Model model, Principal p,Authentication authentication){
+    public RedirectView getDashbaordPage(Model model, Principal p,Authentication authentication){
 
+        System.out.println(authentication.getAuthorities().toString());
         if(authentication.getAuthorities().toString().equals("[SubAdmin]"))
-            return "subAdmindashboard.html";
+            return new RedirectView("/subAdminPanel");
         else if (authentication.getAuthorities().toString().equals("[Doctor]"))
-            return "doctordashboard.html";
+            return new RedirectView("/subAdminPanel");
         else if(authentication.getAuthorities().toString().equals("[Admin]"))
-            return "adminPanel.html";
-        else
-        return "secretarydashboard.html";
+            return new RedirectView("/adminPanel");
+        else if(authentication.getAuthorities().toString().equals("[Secretary]"))
+        return new RedirectView("/subAdminPanel");
+        else return new RedirectView("/login");
     }
 }
