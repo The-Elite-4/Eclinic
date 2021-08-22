@@ -7,7 +7,10 @@ import com.example.Eclinic.repositories.AdminRepo;
 import com.example.Eclinic.repositories.ClinicRepo;
 import com.example.Eclinic.repositories.SubAdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,15 +75,15 @@ public class AuthControllers {
 
     ////////////////////////////////////////// redircet to dashboard page //////////////////////
     @GetMapping("/myDashboard")
-    public String getDashbaordPage(Model model, Principal p){
+    public String getDashbaordPage(Model model, Principal p,Authentication authentication){
 
-        if(p.getName().contains("SubAdmin"))
+        if(authentication.getAuthorities().toString().equals("[SubAdmin]"))
             return "subAdmindashboard.html";
-        else if (p.getName().contains("Doctor"))
+        else if (authentication.getAuthorities().toString().equals("[Doctor]"))
             return "doctordashboard.html";
-        else if(p.getName().contains("Admin"))
+        else if(authentication.getAuthorities().toString().equals("[Admin]"))
             return "adminPanel.html";
         else
-            return "secretarydashboard.html";
+        return "secretarydashboard.html";
     }
 }
