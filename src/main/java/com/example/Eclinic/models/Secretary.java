@@ -54,7 +54,7 @@ public class Secretary implements UserDetails {
         List<SimpleGrantedAuthority> userAuthorities = new ArrayList<>();
         userAuthorities.add(simpleGrantedAuthority);
         return userAuthorities;
-    }
+        }
 
     @Override
     public String getPassword() {
@@ -85,6 +85,7 @@ public class Secretary implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
     ////////////////////////////////////setters and getters//////////////////////////////////////
 
     public Integer getId() {

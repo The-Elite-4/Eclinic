@@ -19,6 +19,7 @@ public class Patient {
     private Integer age;
     private String drugAllergies;
 
+    
     @ManyToOne
     private Clinic clinic;
 

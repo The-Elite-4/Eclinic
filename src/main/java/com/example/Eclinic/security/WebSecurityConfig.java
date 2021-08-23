@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(secretaryDetailsServiceImpl).passwordEncoder(passwordEncoder());
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         auth.userDetailsService(subAdminDetailsServiceImpl).passwordEncoder(passwordEncoder());
+
     }
 
     @Override
