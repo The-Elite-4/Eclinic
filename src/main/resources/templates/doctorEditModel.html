@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+<!------------------------------------ model ------------------------------------------------------>
+<!-- Doctor Modal -->
+<div th:fragment="doctorEditModel" class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel1">Edit Doctor: </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/editDoctor" th:object="${doctor}" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username </label>
+                        <input type="text" class="form-control" id="username" th:field="*{username}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password </label>
+                        <input type="password" class="form-control" id="password" th:field="*{password}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="firstName">First Name </label>
+                        <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="lastName">Last Name </label>
+                        <input type="text" class="form-control" id="lastName" name="lastName"  th:value="sssssss">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="profilePic">profile Picture </label>
+                        <input type="text" class="form-control" id="profilePic" th:field="*{profilePic}" th:attr="value = ${'asd'}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="signatureUrl">Signature Url </label>
+                        <input type="text" class="form-control" id="signatureUrl" th:field="*{signatureUrl}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" th:field="*{gender}">
+                            <option th:value="Male" th:text="Male" selected></option>
+                            <option th:value="Female" th:text="Female"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="phoneNumber">Phone Number </label>
+                        <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="certificateId">Certificate Id </label>
+                        <input type="text" class="form-control" id="certificateId" th:field="*{certificateId}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="doctorMajor">Doctor Major </label>
+                        <input type="text" class="form-control" id="doctorMajor" th:field="*{doctorMajor}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
