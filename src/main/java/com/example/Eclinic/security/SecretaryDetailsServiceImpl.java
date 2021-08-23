@@ -1,7 +1,6 @@
 package com.example.Eclinic.security;
 
 import com.example.Eclinic.models.Secretary;
-import com.example.Eclinic.models.SubAdmin;
 import com.example.Eclinic.repositories.SecretaryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SecretaryDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
     SecretaryRepo secretaryRepo;
 
