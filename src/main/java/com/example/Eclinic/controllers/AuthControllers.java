@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class AuthControllers {
@@ -41,14 +42,15 @@ public class AuthControllers {
     public String getHomePage(){
 //         WARNING WARNING >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delete this
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//        Admin admin = new Admin("Anas","12345","Anas","Alramahi","https://media-exp1.licdn" +
-//                ".com/dms/image/C5603AQE5WQzUEDuh3w/profile-displayphoto-shrink_400_400/0/1617614323444?e=1634774400&v=beta&t=HS-HtxM7Mc2i_7cdUcv8dpEwaitTxnH_nYP9zMwqpPM");
-//        admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
-//        adminRepo.save(admin);
+        if(adminRepo.findAll().toString().equals("[]")){
+            Admin admin = new Admin("Anas","12345","Anas","Alramahi","https://media-exp1.licdn" +
+                    ".com/dms/image/C5603AQE5WQzUEDuh3w/profile-displayphoto-shrink_400_400/0/1617614323444?e=1634774400&v=beta&t=HS-HtxM7Mc2i_7cdUcv8dpEwaitTxnH_nYP9zMwqpPM");
+            admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
+            adminRepo.save(admin);
+        }
 
         return "home.html";
     }
-
 
 
     //////////////////////////////// main signup and login ////////////////////////////////////////
@@ -80,8 +82,6 @@ public class AuthControllers {
         return "login.html";
     }
 
-
-
     ////////////////////////////////////////// redircet to dashboard page //////////////////////
     @GetMapping("/myDashboard")
     public RedirectView getDashbaordPage(Model model, Principal p,Authentication authentication){
@@ -89,11 +89,11 @@ public class AuthControllers {
         if(authentication.getAuthorities().toString().equals("[SubAdmin]"))
             return new RedirectView("/subAdminPanel");
         else if (authentication.getAuthorities().toString().equals("[Doctor]"))
-            return new RedirectView("/subAdminPanel");
+            return new RedirectView("/doctorPage");
         else if(authentication.getAuthorities().toString().equals("[Admin]"))
             return new RedirectView("/adminPanel");
         else if(authentication.getAuthorities().toString().equals("[Secretary]"))
-        return new RedirectView("/subAdminPanel");
-        else return new RedirectView("/secretary");
+        return new RedirectView("/secretary");
+        else return new RedirectView("/");
     }
 }

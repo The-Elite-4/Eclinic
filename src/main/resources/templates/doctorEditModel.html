@@ -4,16 +4,15 @@
 <body>
 <!------------------------------------ model ------------------------------------------------------>
 <!-- Doctor Modal -->
-<div th:fragment="doctorEditModel" class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <!--aria-hidden="true"--->
+<div th:if="${show}" th:fragment="doctorEditModel" class="modal fade show d-block" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel1">Edit Doctor: </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="location.href = '/subAdminPanel'"></button>
             </div>
             <div class="modal-body">
-                <form action="/editDoctor" th:object="${doctor}" method="post">
+                <form th:action="@{'/editDoctor/'+${oneDoctor.id}}" th:object="${doctor}" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username </label>
                         <input type="text" class="form-control" id="username" name="username"
@@ -31,36 +30,36 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-check-label" for="lastName">Last Name </label>
-                        <input type="text" class="form-control" id="lastName" name="lastName">
+                        <input type="text" class="form-control" id="lastName" name="lastName" th:value="${oneDoctor.lastName}">
                     </div>
                     <div class="mb-3">
                         <label class="form-check-label" for="profilePic">profile Picture </label>
-                        <input type="text" class="form-control" id="profilePic" name="profilePic">
+                        <input type="text" class="form-control" id="profilePic" name="profilePic" th:value="${oneDoctor.profilePic}">
                     </div>
                     <div class="mb-3">
                         <label class="form-check-label" for="signatureUrl">Signature Url </label>
-                        <input type="text" class="form-control" id="signatureUrl" name="signatureUrl">
+                        <input type="text" class="form-control" id="signatureUrl" name="signatureUrl" th:value="${oneDoctor.signatureUrl}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gender</label>
-                        <select class="form-select" name="gender" id="gender">
+                        <select class="form-select" name="gender" id="gender" th:value="${oneDoctor.gender}">
                             <option th:value="Male" th:text="Male" selected></option>
                             <option th:value="Female" th:text="Female"></option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-check-label" for="phoneNumber">Phone Number </label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" th:value="${oneDoctor.phoneNumber}">
                     </div>
                     <div class="mb-3">
                         <label class="form-check-label" for="certificateId">Certificate Id </label>
-                        <input type="text" class="form-control" id="certificateId" name="certificateId">
+                        <input type="text" class="form-control" id="certificateId" name="certificateId" th:value="${oneDoctor.certificateId}">
                     </div>
                     <div class="mb-3">
                         <label class="form-check-label" for="doctorMajor">Doctor Major </label>
-                        <input type="text" class="form-control" id="doctorMajor" name="doctorMajor">
+                        <input type="text" class="form-control" id="doctorMajor" name="doctorMajor" th:value="${oneDoctor.doctorMajor}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>

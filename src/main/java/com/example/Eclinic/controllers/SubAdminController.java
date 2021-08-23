@@ -33,14 +33,16 @@ public class SubAdminController {
 
     @GetMapping("/subAdminPanel")
     public String getSubAdminPage(Model m, Principal p){
-        // get all doctors and secretaries
-        m.addAttribute("secretaries", secretaryRepo.findAll());
-        m.addAttribute("doctors", doctorRepo.findAll());
+        Integer clinicID = subAdminRepo.findByUsername(p.getName()).getClinic().getId();
+        m.addAttribute("secretaries", secretaryRepo.findAllByClinicIdOrderByIdAsc(clinicID));
+        m.addAttribute("doctors", doctorRepo.findAllByClinicIdOrderByIdAsc(clinicID));
         m.addAttribute("doctor", new Doctor());
         m.addAttribute("secretary", new Secretary());
-        // after update form button clicked
+        ////////////////////// for update doctor and secretary form button clicked
         m.addAttribute("oneDoctor",new Doctor());
         m.addAttribute("show",false);
+        m.addAttribute("oneSecretary",new Secretary());
+        m.addAttribute("showSec",false);
         return "subAdmindashboard.html";
     }
 
@@ -61,5 +63,4 @@ public class SubAdminController {
         secretaryRepo.save(secretary);
         return new RedirectView("/subAdminPanel");
     }
-
 }
