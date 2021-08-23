@@ -2,6 +2,7 @@ package com.example.Eclinic.controllers;
 
 
 import com.example.Eclinic.models.Admin;
+import com.example.Eclinic.models.Admin;
 import com.example.Eclinic.models.Clinic;
 import com.example.Eclinic.models.SubAdmin;
 import com.example.Eclinic.repositories.AdminRepo;
@@ -35,8 +36,8 @@ public class AuthControllers {
     @Autowired
     SecretaryRepo secretaryRepo;
 
-    //////Miral//////
-    /////////////////////////////////////// home /////////////////////////////////////////
+//    //////Miral//////
+//    /////////////////////////////////////// home /////////////////////////////////////////
     @GetMapping("/")
     public String getHomePage(){
 //         WARNING WARNING >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delete this

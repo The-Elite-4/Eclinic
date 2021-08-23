@@ -40,6 +40,9 @@ public class SubAdminController {
         m.addAttribute("doctors", doctorRepo.findAllByClinicId(clinicID));
         m.addAttribute("doctor", new Doctor());
         m.addAttribute("secretary", new Secretary());
+        // after update form button clicked
+        m.addAttribute("oneDoctor",new Doctor());
+        m.addAttribute("show",false);
         return "subAdmindashboard.html";
     }
 

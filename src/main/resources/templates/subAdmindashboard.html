@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/headerFooterStyle.css}">
@@ -15,129 +20,153 @@
     <title>Admin Page</title>
 </head>
 <body>
-    <div th:replace="header :: header"></div> <!---------- this is the header fragment ------------>
+<div th:replace="header :: header"></div> <!---------- this is the header fragment ------------>
+<!--    ---------------------------- Add Doctor Modal ------------------------------------------- -->
 
+<!-- Doctor Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Add Doctor
+</button>
 
-    <!--    ---------------------------- Add Doctor Modal ------------------------------------------- -->
-
-    <!-- Doctor Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Add Doctor
-    </button>
-
-    <!-- Doctor Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add a doctor: </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/addDoctor" th:object="${doctor}" method="post">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username </label>
-                            <input type="text" class="form-control" id="username" th:field="*{username}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password </label>
-                            <input type="password" class="form-control" id="password" th:field="*{password}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="firstName">First Name </label>
-                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="lastName">Last Name </label>
-                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="profilePic">profile Picture </label>
-                            <input type="text" class="form-control" id="profilePic" th:field="*{profilePic}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="signatureUrl">Signature Url </label>
-                            <input type="text" class="form-control" id="signatureUrl" th:field="*{signatureUrl}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Gender</label>
-                            <select class="form-select" th:field="*{gender}">
-                                <option th:value="Male" th:text="Male" selected></option>
-                                <option th:value="Female" th:text="Female"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="phoneNumber">Phone Number </label>
-                            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="certificateId">Certificate Id </label>
-                            <input type="text" class="form-control" id="certificateId" th:field="*{certificateId}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="doctorMajor">Doctor Major </label>
-                            <input type="text" class="form-control" id="doctorMajor" th:field="*{doctorMajor}">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-                </div>
+<!-- Doctor Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Add a doctor: </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/addDoctor" th:object="${doctor}" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username </label>
+                        <input type="text" class="form-control" id="username" th:field="*{username}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password </label>
+                        <input type="password" class="form-control" id="password" th:field="*{password}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="firstName">First Name </label>
+                        <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="lastName">Last Name </label>
+                        <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="profilePic">profile Picture </label>
+                        <input type="text" class="form-control" id="profilePic" th:field="*{profilePic}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="signatureUrl">Signature Url </label>
+                        <input type="text" class="form-control" id="signatureUrl" th:field="*{signatureUrl}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" th:field="*{gender}">
+                            <option th:value="Male" th:text="Male" selected></option>
+                            <option th:value="Female" th:text="Female"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="phoneNumber">Phone Number </label>
+                        <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="certificateId">Certificate Id </label>
+                        <input type="text" class="form-control" id="certificateId" th:field="*{certificateId}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="doctorMajor">Doctor Major </label>
+                        <input type="text" class="form-control" id="doctorMajor" th:field="*{doctorMajor}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!--    ---------------------------- Add Seceretary Modal ------------------------------------------- -->
-    <div th:replace="secretaryModal :: secretaryModal"></div>
+<!--    ---------------------------- Add Seceretary Modal ------------------------------------------- -->
+<div th:replace="secretaryModal :: secretaryModal"></div>
 
 
-
-    <!----------------------------This is the tabs section ------------------------------------------->
-    <div class="d-flex align-items-start">
-        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Doctors</button>
-            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Secretaries</button>
+<!----------------------------This is the tabs section ------------------------------------------->
+<div class="d-flex align-items-start">
+    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Doctors
+        </button>
+        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Secretaries
+        </button>
+    </div>
+    <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
+        <div style="width: 90%;" class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+             aria-labelledby="v-pills-home-tab">
+            <h2>Doctors</h2>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>ProfilePic</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>PhoneNumber</th>
+                    <th>DoctorMajor</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="doctor : ${doctors}">
+                    <td th:text="${doctor.profilePic}"></td>
+                    <td th:text="${doctor.firstName} + ' ' + ${doctor.lastName}"></td>
+                    <td th:text="${doctor.gender}"></td>
+                    <td th:text="${doctor.phoneNumber}"></td>
+                    <td th:text="${doctor.doctorMajor}"></td>
+                    <td>
+                        <a th:href="@{'/getDoctor/'+${doctor.id}}" id="editDoctorModal">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                    </td>
+                    <td><a th:href="${'/deleteDoctor/' + doctor.id}"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            </table>
         </div>
-        <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
-            <div style="width: 90%;" class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                <h2>Doctors</h2>
-                <table class="table table-striped table-hover">
-                    <tr>
-                        <th>profilePic</th>
-                        <th>Name</th>
-                        <th>gender</th>
-                        <th>phoneNumber</th>
-                        <th>doctorMajor</th>
-                    </tr>
-                    <tr th:each="doctor : ${doctors}">
-                        <td th:text="${doctor.profilePic}"></td>
-                        <td th:text="${doctor.firstName} + ' ' + ${doctor.lastName}"></td>
-                        <td th:text="${doctor.gender}"></td>
-                        <td th:text="${doctor.phoneNumber}"></td>
-                        <td th:text="${doctor.doctorMajor}"></td>
-                    </tr>
-                </table>
-            </div>
 
-            <div style="width: 90%;" class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <h2>Secretaries</h2>
-                <table class="table table-striped table-hover">
-                    <tr>
-                        <th>profilePic</th>
-                        <th>Name</th>
-                        <th>gender</th>
-                        <th>phoneNumber</th>
-                    </tr>
-                    <tr th:each="secretary : ${secretaries}">
-                        <td th:text="${secretary.profilePic}"></td>
-                        <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>
-                        <td th:text="${secretary.gender}"></td>
-                        <td th:text="${secretary.phoneNumber}"></td>
-                    </tr>
-                </table>
-            </div>
+        <div style="width: 90%;" class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+             aria-labelledby="v-pills-profile-tab">
+            <h2>Secretaries</h2>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>profilePic</th>
+                    <th>Name</th>
+                    <th>gender</th>
+                    <th>phoneNumber</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="secretary : ${secretaries}">
+                    <td th:text="${secretary.profilePic}"></td>
+                    <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>
+                    <td th:text="${secretary.gender}"></td>
+                    <td th:text="${secretary.phoneNumber}"></td>
+                    <!--                        <td><a th:href="${'/secretary/' + secretary.id}"><i class="fas fa-pen"></i></a></td>-->
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop3">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td><a th:href="${'/deleteSecretary/' + secretary.id}"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
+<!--    ------------------------------------------------ doctorEditModel -------------------------------------------------->
+<div th:replace="doctorEditModel :: doctorEditModel"></div>
 
-    <div th:replace="footer :: footer"></div> <!--This is the footer fragment-->
+<div th:replace="footer :: footer"></div> <!--This is the footer fragment-->
 </body>
 </html>
