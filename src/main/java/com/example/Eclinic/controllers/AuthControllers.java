@@ -2,6 +2,7 @@ package com.example.Eclinic.controllers;
 
 import com.example.Eclinic.models.Admin;
 import com.example.Eclinic.models.Clinic;
+import com.example.Eclinic.models.Secretary;
 import com.example.Eclinic.models.SubAdmin;
 import com.example.Eclinic.repositories.AdminRepo;
 import com.example.Eclinic.repositories.ClinicRepo;
@@ -32,17 +33,19 @@ public class AuthControllers {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //////Miral//////
     /////////////////////////////////////// home /////////////////////////////////////////
-    @GetMapping("/")
-    public String getHomePage(){
-        // WARNING WARNING >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delete this
+//    @GetMapping("/")
+//    public String getHomePage(){
+////         WARNING WARNING >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delete this
+//        //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //        Admin admin = new Admin("Anas","12345","Anas","Alramahi","https://media-exp1.licdn" +
 //                ".com/dms/image/C5603AQE5WQzUEDuh3w/profile-displayphoto-shrink_400_400/0/1617614323444?e=1634774400&v=beta&t=HS-HtxM7Mc2i_7cdUcv8dpEwaitTxnH_nYP9zMwqpPM");
 //        admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
 //        adminRepo.save(admin);
-
-        return "home.html";
-    }
+//
+//        return "home.html";
+//    }
 
     //////////////////////////////// main signup and login ////////////////////////////////////////
     @GetMapping("/signup")
@@ -73,17 +76,20 @@ public class AuthControllers {
         return "login.html";
     }
 
+
+
+    //////Miral//////
     ////////////////////////////////////////// redircet to dashboard page //////////////////////
     @GetMapping("/myDashboard")
-    public String getDashbaordPage(Model model, Principal p,Authentication authentication){
-
+    public RedirectView getDashbaordPage(Model model, Principal p,Authentication authentication){
+        System.out.println(authentication.getAuthorities().toString());
         if(authentication.getAuthorities().toString().equals("[SubAdmin]"))
-            return "subAdmindashboard.html";
+            return new RedirectView("/subAdmin");
         else if (authentication.getAuthorities().toString().equals("[Doctor]"))
-            return "doctordashboard.html";
+            return new RedirectView("doctordashboard.html");
         else if(authentication.getAuthorities().toString().equals("[Admin]"))
-            return "adminPanel.html";
+            return new RedirectView("/adminPanel");
         else
-        return "secretarydashboard.html";
+            return new RedirectView("/secretary");
     }
 }

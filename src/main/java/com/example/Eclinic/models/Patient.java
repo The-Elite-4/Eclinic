@@ -19,6 +19,7 @@ public class Patient {
     private Integer age;
     private String drugAllergies;
 
+    //Do we need a profile picture? //- Miral:)
     @ManyToOne
     private Clinic clinic;
 
