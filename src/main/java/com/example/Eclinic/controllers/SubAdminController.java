@@ -34,8 +34,10 @@ public class SubAdminController {
     @GetMapping("/subAdminPanel")
     public String getSubAdminPage(Model m, Principal p){
         // get all doctors and secretaries
-        m.addAttribute("secretaries", secretaryRepo.findAll());
-        m.addAttribute("doctors", doctorRepo.findAll());
+        //warning >>>>>>>>>>> get all secretarires and doctors by clinic id
+        Integer clinicID = subAdminRepo.findByUsername(p.getName()).getClinic().getId();
+        m.addAttribute("secretaries", secretaryRepo.findAllByClinicId(clinicID));
+        m.addAttribute("doctors", doctorRepo.findAllByClinicId(clinicID));
         m.addAttribute("doctor", new Doctor());
         m.addAttribute("secretary", new Secretary());
         return "subAdmindashboard.html";

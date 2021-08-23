@@ -35,16 +35,16 @@ public class SecretaryController {
 
 
 
-    /////Miral/////
-    @GetMapping("/")
-    public String getSecretary(){
-//        Clinic clinic = clinicRepo.findById(1).get();
-//        Secretary secretary = new Secretary("miral97", "12345", "Miral", "Alabdullah", "female", 017,
-//                "https://cdn4.iconfinder.com/data/icons/user-professions-avatar/64/-_employee_female-512.png", clinic);
-//        secretary.setPassword(bCryptPasswordEncoder.encode(secretary.getPassword()));
-//        secretaryRepo.save(secretary);
-        return "home.html";
-    }
+//    /////Miral/////
+//    @GetMapping("/")
+//    public String getSecretary(){
+////        Clinic clinic = clinicRepo.findById(1).get();
+////        Secretary secretary = new Secretary("miral97", "12345", "Miral", "Alabdullah", "female", 017,
+////                "https://cdn4.iconfinder.com/data/icons/user-professions-avatar/64/-_employee_female-512.png", clinic);
+////        secretary.setPassword(bCryptPasswordEncoder.encode(secretary.getPassword()));
+////        secretaryRepo.save(secretary);
+//        return "home.html";
+//    }
 
 
 
@@ -56,20 +56,6 @@ public class SecretaryController {
     }
 
 
-    @PostMapping("/addPatient")
-    public RedirectView addPatient(Principal p, @ModelAttribute Patient patient){
-        Clinic clinic = secretaryRepo.findByUsername(p.getName()).getClinic();
-        patient.setClinic(clinic);
-        patientRepo.save(patient);
-        return new RedirectView("/secretary");
-    }
-
-    @GetMapping("/patient/{id}")
-    public String getASpecificPatient(@PathVariable Integer id, Model m){
-        Patient patient = patientRepo.findById(id).get();
-        m.addAttribute("patient", patient);
-        return "singlepatient.html";
-    }
 
 
 }
