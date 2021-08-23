@@ -18,6 +18,8 @@ import com.example.Eclinic.repositories.SecretaryRepo;
 import com.example.Eclinic.repositories.SubAdminRepo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.print.Doc;
 import java.security.Principal;
 
 
@@ -91,31 +93,40 @@ public class DoctorController {
         return new RedirectView("/subAdminPanel");
     }
 
-    @PostMapping("/editDoctor")
-    public RedirectView addSomeone(Principal p, @ModelAttribute Doctor doctor){
-
+    //// save edited doctor modal
+    @PostMapping("/editDoctor/{id}")
+    public RedirectView addSomeone(Principal p, @ModelAttribute Doctor doctor,@PathVariable Integer id){
         Clinic clinic = subAdminRepo.findByUsername(p.getName()).getClinic();
-        doctor.setClinic(clinic);
-        doctor.setPassword(bCryptPasswordEncoder.encode(doctor.getPassword()));
-        doctorRepo.save(doctor);
+        ////////////set new records
+        Doctor oldDoc = doctorRepo.findById(id).get();
+        oldDoc.setPassword(bCryptPasswordEncoder.encode(doctor.getPassword()));
+        oldDoc.setFirstName(doctor.getFirstName());
+        oldDoc.setLastName(doctor.getLastName());
+        oldDoc.setDoctorMajor(doctor.getDoctorMajor());
+        oldDoc.setGender(doctor.getGender());
+        oldDoc.setPhoneNumber(doctor.getPhoneNumber());
+        oldDoc.setCertificateId(doctor.getCertificateId());
+        oldDoc.setSignatureUrl(doctor.getSignatureUrl());
+        oldDoc.setUsername(doctor.getUsername());
+        oldDoc.setProfilePic(doctor.getProfilePic());
+        doctorRepo.save(oldDoc);
         return new RedirectView("/subAdminPanel");
     }
 
     // for edit doctor modal
     @GetMapping("/getDoctor/{id}")
-    public String getOneDoctor(@PathVariable Integer id, Model m){
-        System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiii");
-        System.out.println(id);
-
-        m.addAttribute("secretaries", secretaryRepo.findAll());
-        m.addAttribute("doctors", doctorRepo.findAll());
+    public String getOneDoctor(@PathVariable Integer id, Model m,Principal p){
+        Integer clinicID = subAdminRepo.findByUsername(p.getName()).getClinic().getId();
+        m.addAttribute("secretaries", secretaryRepo.findAllByClinicIdOrderByIdAsc(clinicID));
+        m.addAttribute("doctors", doctorRepo.findAllByClinicIdOrderByIdAsc(clinicID));
         m.addAttribute("doctor", new Doctor());
         m.addAttribute("secretary", new Secretary());
         ////////////////////////////
         m.addAttribute("oneDoctor",doctorRepo.findById(id).get());
         m.addAttribute("show",true);
+        m.addAttribute("oneSecretary",new Secretary());
+        m.addAttribute("showSec",false);
         return "subAdmindashboard.html";
     }
-
 }
 

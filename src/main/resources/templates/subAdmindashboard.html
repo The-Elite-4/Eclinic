@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -133,7 +133,6 @@
                 </tr>
             </table>
         </div>
-
         <div style="width: 90%;" class="tab-pane fade" id="v-pills-profile" role="tabpanel"
              aria-labelledby="v-pills-profile-tab">
             <h2>Secretaries</h2>
@@ -151,12 +150,10 @@
                     <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>
                     <td th:text="${secretary.gender}"></td>
                     <td th:text="${secretary.phoneNumber}"></td>
-                    <!--                        <td><a th:href="${'/secretary/' + secretary.id}"><i class="fas fa-pen"></i></a></td>-->
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop3">
+                        <a th:href="@{'/getSecretary/'+${secretary.id}}" id="editSecretaryModal">
                             <i class="fas fa-pen"></i>
-                        </button>
+                        </a>
                     </td>
                     <td><a th:href="${'/deleteSecretary/' + secretary.id}"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
@@ -164,9 +161,11 @@
         </div>
     </div>
 </div>
-<!--    ------------------------------------------------ doctorEditModel -------------------------------------------------->
+<!-------------------------------------------- doctorEditModel ---------------------------------------------->
 <div th:replace="doctorEditModel :: doctorEditModel"></div>
-
-<div th:replace="footer :: footer"></div> <!--This is the footer fragment-->
+<!--------------------------------------------- secretaryEditModel ------------------------------------------->
+<div th:replace="secretaryEditModal :: secretaryEditModal"></div>
+<!-----------------------------------------------This is the footer fragment--------------------------------->
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

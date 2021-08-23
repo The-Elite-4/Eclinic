@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DoctorRepo extends CrudRepository<Doctor,Integer> {
     public Doctor findByUsername(String username);
-    public Iterable<Doctor> findAllByClinicId(Integer clinicId);
+    public Iterable<Doctor> findAllByClinicIdOrderByIdAsc(Integer clinicId);
 }
