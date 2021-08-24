@@ -59,10 +59,9 @@
                     <td><a th:href="${'/patient/' + patient.id}"><i class="fas fa-info-circle all-info-icon"></i></a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
-                            <i class="fas fa-plus-circle"></i> Prescription
-                        </button>
+                        <a th:href="@{'/prescriptionModal/'+${patient.id}}">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -92,32 +91,32 @@
 
 <!------------------------------------ Prescription Modal ------------------------------------------------------>
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div th:if="${showPresModal}" class="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Add Prescription: </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="location.href = '/doctorPage'"></button>
             </div>
             <div class="modal-body">
-                <form action="/addPrescription" method="post">
+                <form th:action="@{'/addPrescription/'+${singlePatient.id}}" th:object="${medicine}"  method="post" id="mainForm">
                     <!----------------------------------prescription info fields-------------------------------------->
                     <div class="mb-3">
                         <label for="diagnosis" class="form-label">Diagnosis</label>
-                        <input type="text" class="form-control" id="diagnosis" name="diagnosis">
+                        <input type="text" class="form-control" id="diagnosis" name="diagnosis" required>
                     </div>
                     <div class="mb-3">
                         <label for="comment" class="form-label">Comment</label>
-                        <input type="text" class="form-control" id="comment" name="comment">
+                        <input type="text" class="form-control" id="comment" name="comment" required>
                     </div>
                     <div class="mb-3">
                         <label for="nextVisit" class="form-label">Next Visit</label>
-                        <input type="date" class="form-control" id="nextVisit" name="nextVisit">
+                        <input type="date" class="form-control" id="nextVisit" name="nextVisit" required>
                     </div>
                     <!----------------------------------medicine divs -------------------------------------->
-                    <i class="fas fa-plus-circle addmedicine" onclick="" id="addmed"></i>
-                    <div th:object="${medicine1}" id="med1">
+                    <i class="fas fa-plus-circle addmedicine" id="addmed"></i>
+                    <div id="med1">
                         <p>medicine 1</p>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -163,25 +162,19 @@
                                   style="height: 100px"></textarea>
                             <label for="details">More details</label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals">
-                                before Meals
-                            </label>
-                        </div>
                     </div>
                     <!------------------------------------- medicine 2 -------------------------------------->
-                    <div th:object="${medicine2}" id="med2">
+                    <div id="med2">
                         <p>medicine 222222222222</p>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name1" class="form-label">Name</label>
                             <select class="form-select" id="name1" th:field="*{name}">
-                                <option th:each="medName: ${medNames}" th:text="${medName}"
-                                        th:value="${medName}"></option>
+                                <option th:each="medName2: ${medNames}" th:text="${medName2}"
+                                        th:value="${medName2}"></option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="dosage" class="form-label">Dosage</label>
+                            <label for="dosage1" class="form-label">Dosage</label>
                             <input type="number" class="form-control" id="dosage1" th:field="*{dosage}">
                         </div>
                         <div class="mb-3">
@@ -192,7 +185,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="timesPer" class="form-label">Per</label>
+                            <label for="timesPer1" class="form-label">Per</label>
                             <select class="form-select" id="timesPer1" th:field="*{timesPer}">
                                 <option th:value="day" th:text="day" selected></option>
                                 <option th:value="week" th:text="week"></option>
@@ -200,11 +193,11 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="dosage" class="form-label">Duration</label>
+                            <label for="duration1" class="form-label">Duration</label>
                             <input type="number" class="form-control" id="duration1" th:field="*{duration}">
                         </div>
                         <div class="mb-3">
-                            <label for="timesPer" class="form-label">Duration unit</label>
+                            <label for="durationType1" class="form-label">Duration unit</label>
                             <select class="form-select" id="durationType1" th:field="*{durationType}">
                                 <option th:value="day" th:text="days" selected></option>
                                 <option th:value="week" th:text="weeks"></option>
@@ -215,27 +208,21 @@
                         <textarea class="form-control" placeholder="Leave a comment here" id="details1"
                                   th:field="*{details}"
                                   style="height: 100px"></textarea>
-                            <label for="details">More details</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals1" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals">
-                                before Meals
-                            </label>
+                            <label for="details1">More details</label>
                         </div>
                     </div>
                     <!------------------------------------- medicine 3 -------------------------------------->
-                    <div th:object="${medicine3}" id="med3">
+                    <div id="med3">
                         <p>medicine 3333333333</p>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name2" class="form-label">Name</label>
                             <select class="form-select" id="name2" th:field="*{name}">
-                                <option th:each="medName: ${medNames}" th:text="${medName}"
-                                        th:value="${medName}"></option>
+                                <option th:each="medName3: ${medNames}" th:text="${medName3}"
+                                        th:value="${medName3}"></option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="dosage" class="form-label">Dosage</label>
+                            <label for="dosage2" class="form-label">Dosage</label>
                             <input type="number" class="form-control" id="dosage2" th:field="*{dosage}">
                         </div>
                         <div class="mb-3">
@@ -246,7 +233,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="timesPer" class="form-label">Per</label>
+                            <label for="timesPer2" class="form-label">Per</label>
                             <select class="form-select" id="timesPer2" th:field="*{timesPer}">
                                 <option th:value="day" th:text="day" selected></option>
                                 <option th:value="week" th:text="week"></option>
@@ -254,11 +241,11 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="dosage" class="form-label">Duration</label>
+                            <label for="duration2" class="form-label">Duration</label>
                             <input type="number" class="form-control" id="duration2" th:field="*{duration}">
                         </div>
                         <div class="mb-3">
-                            <label for="timesPer" class="form-label">Duration unit</label>
+                            <label for="durationType2" class="form-label">Duration unit</label>
                             <select class="form-select" id="durationType2" th:field="*{durationType}">
                                 <option th:value="day" th:text="days" selected></option>
                                 <option th:value="week" th:text="weeks"></option>
@@ -269,27 +256,21 @@
                         <textarea class="form-control" placeholder="Leave a comment here" id="details2"
                                   th:field="*{details}"
                                   style="height: 100px"></textarea>
-                            <label for="details">More details</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals2" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals">
-                                before Meals
-                            </label>
+                            <label for="details2">More details</label>
                         </div>
                     </div>
                     <!------------------------------------- medicine 4 -------------------------------------->
-                    <div th:object="${medicine4}" id="med4">
+                    <div id="med4">
                         <p>medicine 4444444444444</p>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name3" class="form-label">Name</label>
                             <select class="form-select" id="name3" th:field="*{name}">
-                                <option th:each="medName: ${medNames}" th:text="${medName}"
-                                        th:value="${medName}"></option>
+                                <option th:each="medName4: ${medNames}" th:text="${medName4}"
+                                        th:value="${medName4}"></option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="dosage" class="form-label">Dosage</label>
+                            <label for="dosage3" class="form-label">Dosage</label>
                             <input type="number" class="form-control" id="dosage3" th:field="*{dosage}">
                         </div>
                         <div class="mb-3">
@@ -300,7 +281,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="timesPer" class="form-label">Per</label>
+                            <label for="timesPer3" class="form-label">Per</label>
                             <select class="form-select" id="timesPer3" th:field="*{timesPer}">
                                 <option th:value="day" th:text="day" selected></option>
                                 <option th:value="week" th:text="week"></option>
@@ -308,11 +289,11 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="dosage" class="form-label">Duration</label>
+                            <label for="duration3" class="form-label">Duration</label>
                             <input type="number" class="form-control" id="duration3" th:field="*{duration}">
                         </div>
                         <div class="mb-3">
-                            <label for="timesPer" class="form-label">Duration unit</label>
+                            <label for="durationType3" class="form-label">Duration unit</label>
                             <select class="form-select" id="durationType3" th:field="*{durationType}">
                                 <option th:value="day" th:text="days" selected></option>
                                 <option th:value="week" th:text="weeks"></option>
@@ -323,16 +304,10 @@
                         <textarea class="form-control" placeholder="Leave a comment here" id="details3"
                                   th:field="*{details}"
                                   style="height: 100px"></textarea>
-                            <label for="details">More details</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals3" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals">
-                                before Meals
-                            </label>
+                            <label for="details3">More details</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary" id="multipleFormSubmit">Add</button>
                 </form>
             </div>
         </div>
