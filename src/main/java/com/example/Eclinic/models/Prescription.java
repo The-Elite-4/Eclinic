@@ -1,6 +1,8 @@
 package com.example.Eclinic.models;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,7 +29,8 @@ public class Prescription {
     @ManyToOne
     private Patient patient;
 
-    @OneToMany(mappedBy = "prescription")
+    @OneToMany(mappedBy = "prescription",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Medicine> medicine = new HashSet<Medicine>();
     //////////////////////////////////// constructor ////////////////////////////////////////
 

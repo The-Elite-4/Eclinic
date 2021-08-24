@@ -9,6 +9,7 @@ import com.example.Eclinic.repositories.AdminRepo;
 import com.example.Eclinic.repositories.ClinicRepo;
 import com.example.Eclinic.repositories.SubAdminRepo;
 import com.example.Eclinic.repositories.*;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,7 +40,7 @@ public class AuthControllers {
 //    //////Miral//////
 //    /////////////////////////////////////// home /////////////////////////////////////////
     @GetMapping("/")
-    public String getHomePage(){
+    public String getHomePage(Model m){
 //         WARNING WARNING >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> delete this
         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         if(adminRepo.findAll().toString().equals("[]")){
@@ -49,7 +50,14 @@ public class AuthControllers {
             adminRepo.save(admin);
         }
 
+        m.addAttribute("allClinics",clinicRepo.findAll());
         return "home.html";
+    }
+
+    @GetMapping("/aboutUs")
+    public String getAboutPage(){
+
+        return "about.html";
     }
 
 

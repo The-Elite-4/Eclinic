@@ -22,298 +22,279 @@
 <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
 
 <!----------------------------This is the tabs section ------------------------------------------->
-<div class="d-flex align-items-start">
-    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">All Patients
-        </button>
-        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">My schedule
-        </button>
-    </div>
-    <!-------------------------------------- patients tab ------------------------------------------------>
-    <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
-        <div style="width: 90%;" class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-             aria-labelledby="v-pills-home-tab">
-            <h2>All Patients</h2>
-            <table class="table table-striped table-hover">
-                <tr>
-                    <th>Name</th>
-                    <th>gender</th>
-                    <th>Date Of Birth</th>
-                    <th>Age</th>
-                    <th>Weight</th>
-                    <th>Drug Allergies</th>
-                    <th>phoneNumber</th>
-                    <th>All Info</th>
-                    <th>Add Prescription</th>
-                </tr>
-                <tr th:each="patient : ${patients}">
-                    <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
-                    <td th:text="${patient.gender}"></td>
-                    <td th:text="${patient.dateOfBirth}"></td>
-                    <td th:text="${patient.age}"></td>
-                    <td th:text="${patient.weight} + ' kg'"></td>
-                    <td th:text="${patient.drugAllergies}"></td>
-                    <td th:text="${patient.phoneNumber}"></td>
-                    <td><a th:href="${'/patient/' + patient.id}"><i class="fas fa-info-circle all-info-icon"></i></a>
-                    </td>
-                    <td>
-                        <a th:href="@{'/prescriptionModal/'+${patient.id}}">
-                            <i class="fas fa-plus-circle"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+<div class="container mt-5 mb-5 Maincontainer">
+    <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3 tabss" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                    type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">All Patients
+            </button>
+            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                    type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">My schedule
+            </button>
         </div>
-
-        <!--------------------------------------- scedule tab ------------------------------->
-        <div style="width: 90%;" class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-             aria-labelledby="v-pills-profile-tab">
-            <h2>My schedule</h2>
-            <!--            <table class="table table-striped table-hover">-->
-            <!--                <tr>-->
-            <!--                    <th>profilePic</th>-->
-            <!--                    <th>Name</th>-->
-            <!--                    <th>gender</th>-->
-            <!--                    <th>phoneNumber</th>-->
-            <!--                </tr>-->
-            <!--                <tr th:each="secretary : ${secretaries}">-->
-            <!--                    <td th:text="${secretary.profilePic}"></td>-->
-            <!--                    <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>-->
-            <!--                    <td th:text="${secretary.gender}"></td>-->
-            <!--                    <td th:text="${secretary.phoneNumber}"></td>-->
-            <!--                </tr>-->
-            <!--            </table>-->
-        </div>
-    </div>
-</div>
-
-<!------------------------------------ Prescription Modal ------------------------------------------------------>
-
-<div th:if="${showPresModal}" class="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Add Prescription: </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="location.href = '/doctorPage'"></button>
+        <!-------------------------------------- patients tab ------------------------------------------------>
+        <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
+            <div style="width: 90%;" class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                 aria-labelledby="v-pills-home-tab">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Name</th>
+                        <th>gender</th>
+                        <th>Date Of Birth</th>
+                        <th>Age</th>
+                        <th>Weight</th>
+                        <th>Drug Allergies</th>
+                        <th>phoneNumber</th>
+                        <th>All Info</th>
+                        <th>Add Prescription</th>
+                    </tr>
+                    <tr th:each="patient : ${patients}">
+                        <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
+                        <td th:text="${patient.gender}"></td>
+                        <td th:text="${patient.dateOfBirth}"></td>
+                        <td th:text="${patient.age}"></td>
+                        <td th:text="${patient.weight} + ' kg'"></td>
+                        <td th:text="${patient.drugAllergies}"></td>
+                        <td th:text="${patient.phoneNumber}"></td>
+                        <td><a th:href="${'/patient/' + patient.id}"><i
+                                class="fas fa-info-circle all-info-icon"></i></a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/prescriptionModal/'+${patient.id}}">
+                                <i class="fas fa-plus-circle all-info-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="modal-body">
-                <form th:action="@{'/addPrescription/'+${singlePatient.id}}" th:object="${medicine}"  method="post" id="mainForm">
-                    <!----------------------------------prescription info fields-------------------------------------->
-                    <div class="mb-3">
-                        <label for="diagnosis" class="form-label">Diagnosis</label>
-                        <input type="text" class="form-control" id="diagnosis" name="diagnosis" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="comment" class="form-label">Comment</label>
-                        <input type="text" class="form-control" id="comment" name="comment" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nextVisit" class="form-label">Next Visit</label>
-                        <input type="date" class="form-control" id="nextVisit" name="nextVisit" required>
-                    </div>
-                    <!----------------------------------medicine divs -------------------------------------->
-                    <i class="fas fa-plus-circle addmedicine" id="addmed"></i>
-                    <div id="med1">
-                        <p>medicine 1</p>
+
+            <!--------------------------------------- scedule tab ------------------------------->
+            <div style="width: 90%;" class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                 aria-labelledby="v-pills-profile-tab">
+                <h2>My schedule</h2>
+                <!--            <table class="table table-striped table-hover">-->
+                <!--                <tr>-->
+                <!--                    <th>profilePic</th>-->
+                <!--                    <th>Name</th>-->
+                <!--                    <th>gender</th>-->
+                <!--                    <th>phoneNumber</th>-->
+                <!--                </tr>-->
+                <!--                <tr th:each="secretary : ${secretaries}">-->
+                <!--                    <td th:text="${secretary.profilePic}"></td>-->
+                <!--                    <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>-->
+                <!--                    <td th:text="${secretary.gender}"></td>-->
+                <!--                    <td th:text="${secretary.phoneNumber}"></td>-->
+                <!--                </tr>-->
+                <!--            </table>-->
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------ Prescription Modal ------------------------------------------------------>
+
+    <div th:if="${showPresModal}" class="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static"
+         data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Prescription: </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="location.href = '/doctorPage'"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{'/addPrescription/'+${singlePatient.id}}" th:object="${medicine}" method="post"
+                          id="mainForm">
+                        <!----------------------------------prescription info fields-------------------------------------->
                         <div class="mb-3">
+                            <label for="diagnosis" class="form-label">Diagnosis</label>
+                            <input type="text" class="form-control" id="diagnosis" name="diagnosis" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <input type="text" class="form-control" id="comment" name="comment" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nextVisit" class="form-label">Next Visit</label>
+                            <input type="date" class="form-control" id="nextVisit" name="nextVisit" required>
+                        </div>
+                        <!----------------------------------medicine divs -------------------------------------->
+                        <div class="mb-3 mt-3"><i class="fas fa-plus-circle addmedicine" id="addmed"></i> Add medicines
+                        </div>
+                        <div id="med1" class="medDiv">
                             <label for="name" class="form-label">Name</label>
-                            <select class="form-select" id="name" th:field="*{name}">
+                            <select id="name" th:field="*{name}">
                                 <option th:each="medName: ${medNames}" th:text="${medName}"
                                         th:value="${medName}"></option>
                             </select>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Dosage</label>
+                                <input type="number" id="dosage" th:field="*{dosage}">
+
+                                <label class="form-label"></label>
+                                <select id="unit" th:field="*{unit}">
+                                    <option th:value="ml" th:text="ml" selected></option>
+                                    <option th:value="pill" th:text="pill"></option>
+                                </select>
+
+                                <label for="timesPer" class="form-label">Per</label>
+                                <select id="timesPer" th:field="*{timesPer}">
+                                    <option th:value="day" th:text="day" selected></option>
+                                    <option th:value="week" th:text="week"></option>
+                                    <option th:value="month" th:text="month"></option>
+                                </select>
+                            </i>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Duration</label>
+                                <input type="number" id="duration" th:field="*{duration}">
+
+
+                                <label for="timesPer" class="form-label"></label>
+                                <select id="durationType" th:field="*{durationType}">
+                                    <option th:value="day" th:text="days" selected></option>
+                                    <option th:value="week" th:text="weeks"></option>
+                                    <option th:value="month" th:text="months"></option>
+                                </select>
+                            </i>
+                            <textarea placeholder="Leave a comment here" id="details"
+                                      th:field="*{details}"
+                                      style="height: 80px"></textarea>
+                            <label for="details"></label>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="dosage" class="form-label">Dosage</label>
-                            <input type="number" class="form-control" id="dosage" th:field="*{dosage}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Unit</label>
-                            <select class="form-select" id="unit" th:field="*{unit}">
-                                <option th:value="ml" th:text="ml" selected></option>
-                                <option th:value="pill" th:text="pill"></option>
+                        <!------------------------------------- medicine 2 -------------------------------------->
+                        <div id="med2" class="medDiv">
+                            <label for="name" class="form-label">Name</label>
+                            <select id="name1" th:field="*{name}">
+                                <option th:each="medName: ${medNames}" th:text="${medName}"
+                                        th:value="${medName}"></option>
                             </select>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Dosage</label>
+                                <input type="number" id="dosage1" th:field="*{dosage}">
+
+                                <label class="form-label"></label>
+                                <select id="unit1" th:field="*{unit}">
+                                    <option th:value="ml" th:text="ml" selected></option>
+                                    <option th:value="pill" th:text="pill"></option>
+                                </select>
+
+                                <label for="timesPer" class="form-label">Per</label>
+                                <select id="timesPer1" th:field="*{timesPer}">
+                                    <option th:value="day" th:text="day" selected></option>
+                                    <option th:value="week" th:text="week"></option>
+                                    <option th:value="month" th:text="month"></option>
+                                </select>
+                            </i>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Duration</label>
+                                <input type="number" id="duration1" th:field="*{duration}">
+
+
+                                <label for="timesPer" class="form-label"></label>
+                                <select id="durationType1" th:field="*{durationType}">
+                                    <option th:value="day" th:text="days" selected></option>
+                                    <option th:value="week" th:text="weeks"></option>
+                                    <option th:value="month" th:text="months"></option>
+                                </select>
+                            </i>
+                            <textarea placeholder="Leave a comment here" id="details1"
+                                      th:field="*{details}"
+                                      style="height: 80px"></textarea>
+                            <label for="details"></label>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="timesPer" class="form-label">Per</label>
-                            <select class="form-select" id="timesPer" th:field="*{timesPer}">
-                                <option th:value="day" th:text="day" selected></option>
-                                <option th:value="week" th:text="week"></option>
-                                <option th:value="month" th:text="month"></option>
+                        <!------------------------------------- medicine 3 -------------------------------------->
+                        <div id="med3" class="medDiv">
+                            <label for="name" class="form-label">Name</label>
+                            <select id="name2" th:field="*{name}">
+                                <option th:each="medName: ${medNames}" th:text="${medName}"
+                                        th:value="${medName}"></option>
                             </select>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Dosage</label>
+                                <input type="number" id="dosage2" th:field="*{dosage}">
+
+                                <label class="form-label"></label>
+                                <select id="unit2" th:field="*{unit}">
+                                    <option th:value="ml" th:text="ml" selected></option>
+                                    <option th:value="pill" th:text="pill"></option>
+                                </select>
+
+                                <label for="timesPer" class="form-label">Per</label>
+                                <select id="timesPer2" th:field="*{timesPer}">
+                                    <option th:value="day" th:text="day" selected></option>
+                                    <option th:value="week" th:text="week"></option>
+                                    <option th:value="month" th:text="month"></option>
+                                </select>
+                            </i>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Duration</label>
+                                <input type="number" id="duration2" th:field="*{duration}">
+
+
+                                <label for="timesPer" class="form-label"></label>
+                                <select id="durationType2" th:field="*{durationType}">
+                                    <option th:value="day" th:text="days" selected></option>
+                                    <option th:value="week" th:text="weeks"></option>
+                                    <option th:value="month" th:text="months"></option>
+                                </select>
+                            </i>
+                            <textarea placeholder="Leave a comment here" id="details2"
+                                      th:field="*{details}"
+                                      style="height: 80px"></textarea>
+                            <label for="details"></label>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="dosage" class="form-label">Duration</label>
-                            <input type="number" class="form-control" id="duration" th:field="*{duration}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="timesPer" class="form-label">Duration unit</label>
-                            <select class="form-select" id="durationType" th:field="*{durationType}">
-                                <option th:value="day" th:text="days" selected></option>
-                                <option th:value="week" th:text="weeks"></option>
-                                <option th:value="month" th:text="months"></option>
+                        <!------------------------------------- medicine 4 -------------------------------------->
+                        <div id="med4" class="medDiv">
+                            <label for="name" class="form-label">Name</label>
+                            <select id="name3" th:field="*{name}">
+                                <option th:each="medName: ${medNames}" th:text="${medName}"
+                                        th:value="${medName}"></option>
                             </select>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Dosage</label>
+                                <input type="number" id="dosage3" th:field="*{dosage}">
+
+                                <label class="form-label"></label>
+                                <select id="unit3" th:field="*{unit}">
+                                    <option th:value="ml" th:text="ml" selected></option>
+                                    <option th:value="pill" th:text="pill"></option>
+                                </select>
+
+                                <label for="timesPer" class="form-label">Per</label>
+                                <select id="timesPer3" th:field="*{timesPer}">
+                                    <option th:value="day" th:text="day" selected></option>
+                                    <option th:value="week" th:text="week"></option>
+                                    <option th:value="month" th:text="month"></option>
+                                </select>
+                            </i>
+                            <i class="seperator">
+                                <label for="dosage" class="form-label">Duration</label>
+                                <input type="number" id="duration3" th:field="*{duration}">
+
+
+                                <label for="timesPer" class="form-label"></label>
+                                <select id="durationType3" th:field="*{durationType}">
+                                    <option th:value="day" th:text="days" selected></option>
+                                    <option th:value="week" th:text="weeks"></option>
+                                    <option th:value="month" th:text="months"></option>
+                                </select>
+                            </i>
+                            <textarea placeholder="Leave a comment here" id="details3"
+                                      th:field="*{details}"
+                                      style="height: 80px"></textarea>
+                            <label for="details"></label>
+
                         </div>
-                        <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="details"
-                                  th:field="*{details}"
-                                  style="height: 100px"></textarea>
-                            <label for="details">More details</label>
-                        </div>
-                    </div>
-                    <!------------------------------------- medicine 2 -------------------------------------->
-                    <div id="med2">
-                        <p>medicine 222222222222</p>
-                        <div class="mb-3">
-                            <label for="name1" class="form-label">Name</label>
-                            <select class="form-select" id="name1" th:field="*{name}">
-                                <option th:each="medName2: ${medNames}" th:text="${medName2}"
-                                        th:value="${medName2}"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dosage1" class="form-label">Dosage</label>
-                            <input type="number" class="form-control" id="dosage1" th:field="*{dosage}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Unit</label>
-                            <select class="form-select" id="unit1" th:field="*{unit}">
-                                <option th:value="ml" th:text="ml" selected></option>
-                                <option th:value="pill" th:text="pill"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="timesPer1" class="form-label">Per</label>
-                            <select class="form-select" id="timesPer1" th:field="*{timesPer}">
-                                <option th:value="day" th:text="day" selected></option>
-                                <option th:value="week" th:text="week"></option>
-                                <option th:value="month" th:text="month"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="duration1" class="form-label">Duration</label>
-                            <input type="number" class="form-control" id="duration1" th:field="*{duration}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="durationType1" class="form-label">Duration unit</label>
-                            <select class="form-select" id="durationType1" th:field="*{durationType}">
-                                <option th:value="day" th:text="days" selected></option>
-                                <option th:value="week" th:text="weeks"></option>
-                                <option th:value="month" th:text="months"></option>
-                            </select>
-                        </div>
-                        <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="details1"
-                                  th:field="*{details}"
-                                  style="height: 100px"></textarea>
-                            <label for="details1">More details</label>
-                        </div>
-                    </div>
-                    <!------------------------------------- medicine 3 -------------------------------------->
-                    <div id="med3">
-                        <p>medicine 3333333333</p>
-                        <div class="mb-3">
-                            <label for="name2" class="form-label">Name</label>
-                            <select class="form-select" id="name2" th:field="*{name}">
-                                <option th:each="medName3: ${medNames}" th:text="${medName3}"
-                                        th:value="${medName3}"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dosage2" class="form-label">Dosage</label>
-                            <input type="number" class="form-control" id="dosage2" th:field="*{dosage}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Unit</label>
-                            <select class="form-select" id="unit2" th:field="*{unit}">
-                                <option th:value="ml" th:text="ml" selected></option>
-                                <option th:value="pill" th:text="pill"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="timesPer2" class="form-label">Per</label>
-                            <select class="form-select" id="timesPer2" th:field="*{timesPer}">
-                                <option th:value="day" th:text="day" selected></option>
-                                <option th:value="week" th:text="week"></option>
-                                <option th:value="month" th:text="month"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="duration2" class="form-label">Duration</label>
-                            <input type="number" class="form-control" id="duration2" th:field="*{duration}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="durationType2" class="form-label">Duration unit</label>
-                            <select class="form-select" id="durationType2" th:field="*{durationType}">
-                                <option th:value="day" th:text="days" selected></option>
-                                <option th:value="week" th:text="weeks"></option>
-                                <option th:value="month" th:text="months"></option>
-                            </select>
-                        </div>
-                        <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="details2"
-                                  th:field="*{details}"
-                                  style="height: 100px"></textarea>
-                            <label for="details2">More details</label>
-                        </div>
-                    </div>
-                    <!------------------------------------- medicine 4 -------------------------------------->
-                    <div id="med4">
-                        <p>medicine 4444444444444</p>
-                        <div class="mb-3">
-                            <label for="name3" class="form-label">Name</label>
-                            <select class="form-select" id="name3" th:field="*{name}">
-                                <option th:each="medName4: ${medNames}" th:text="${medName4}"
-                                        th:value="${medName4}"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dosage3" class="form-label">Dosage</label>
-                            <input type="number" class="form-control" id="dosage3" th:field="*{dosage}">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Unit</label>
-                            <select class="form-select" id="unit3" th:field="*{unit}">
-                                <option th:value="ml" th:text="ml" selected></option>
-                                <option th:value="pill" th:text="pill"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="timesPer3" class="form-label">Per</label>
-                            <select class="form-select" id="timesPer3" th:field="*{timesPer}">
-                                <option th:value="day" th:text="day" selected></option>
-                                <option th:value="week" th:text="week"></option>
-                                <option th:value="month" th:text="month"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="duration3" class="form-label">Duration</label>
-                            <input type="number" class="form-control" id="duration3" th:field="*{duration}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="durationType3" class="form-label">Duration unit</label>
-                            <select class="form-select" id="durationType3" th:field="*{durationType}">
-                                <option th:value="day" th:text="days" selected></option>
-                                <option th:value="week" th:text="weeks"></option>
-                                <option th:value="month" th:text="months"></option>
-                            </select>
-                        </div>
-                        <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="details3"
-                                  th:field="*{details}"
-                                  style="height: 100px"></textarea>
-                            <label for="details3">More details</label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="multipleFormSubmit">Add</button>
-                </form>
+                        <button type="submit" class="btn btn-primary mt-3" id="multipleFormSubmit">Add</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <div th:replace="footer :: footer"></div> <!---------This is the footer fragment-------->
 </body>
 </html>

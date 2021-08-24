@@ -12,8 +12,8 @@
 </head>
 <body>
 <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
-    <h1> login page </h1>
 <div class="form-container">
+    <h1 class="mb-3">Log in</h1>
     <form th:action="@{/perform_login}" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">User Name</label>
@@ -23,9 +23,10 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary loginButton">Login</button>
     </form>
 </div>
+<p class="mt-5 mb-5 underP">New to eClinic? <a th:href="@{/signup}">Join now</a> </p>
 <div th:replace="footer :: footer"></div><!---------- this is fragment ------------>
 </body>
 </html>

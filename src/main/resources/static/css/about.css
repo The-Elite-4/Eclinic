@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+main{
+    display: block;
+    height: 100%;
+}
+
+#secA {
+    display: block;
+    width: 95%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+#secA h3{
+    font-size: 70px;
+    padding-top: 90px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-family: 'Lobster', cursive;
+    color:#4730d5;
+
+}
+
+#secA p{
+    padding-top: 10px;
+    font-size: 20px;
+    line-height: 35px;
+}
+
+#secA p span{
+    color: #4730d5;
+    font-weight: bold;
+}
+
+
+/****************** team pictures ***************************/
+
+#images{
+    display: block;
+    position: relative;
+    height: 600px;
+    width: 95%;
+    margin: 70px auto;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 20px;
+
+}
+
+#images #main {
+    text-align: center;
+    font-size: 70px;
+    padding: 30px 0px;
+    margin-bottom: 50px;
+    margin-top: 20px ;
+    font-family: 'Lobster', cursive;
+    color:#4730d5;
+
+}
+
+#abdulla{
+    background-image: url(../img/abdulla.png);
+    background-size: 28em;
+    background-position: 20px 15px;
+
+}
+
+#abdulla:hover{
+    background-position-x: -16.4em;
+
+}
+
+#ibrahim{
+    background-image: url(../img/ibrahim.png);
+    background-size: 24em;
+    background-position: 18px 15px;
+    margin-left: 0;
+}
+
+#ibrahim:hover{
+    background-position-x: -12.3em;
+}
+
+#osama{
+    background-image: url(../img/osama.png);
+    background-size: 28em;
+    background-position: 18px 15px;
+}
+
+#osama:hover{
+    background-position-x: -16.5em;
+}
+
+#latifa{
+    background-image: url(../img/latifa.png);
+    background-size: 28em 16em;
+    background-position: 18px 15px;
+}
+
+#latifa:hover{
+    background-position-x: -16.5em;
+}
+
+#maram{
+    background-image: url(../img/maram.png);
+    background-size: 28em 17em;
+    background-position: 18px 15px;
+}
+
+#maram:hover{
+    background-position-x: -16.5em;
+}
+
+#nadeen{
+    background-image: url(../img/nadeen.png);
+    background-size: 28em 16em;
+    background-position: 18px 15px;
+}
+
+#nadeen:hover{
+    background-position-x: -16.8em;
+}
+
+.card {
+    display: inline-block;
+    position: relative;
+    box-shadow: 8px 8px rgba(192, 192, 192, 0.411);
+    width: 200px;
+    height: 350px ;
+    text-align: center;
+    margin-left: 30px;
+    background-color: #4730d5;
+    padding-top: 10px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+.card nav h2{
+    font-size: 17px;
+    color: white;
+}
+
+.card .pic{
+    padding-left: 15px;
+}
+
+.pic:hover{
+    transform: scale(1.3);
+}
+
+.card nav{
+   margin-top: 16.7em;
+   text-align: center;
+}
+
+/************************* sectionThree - Form ****************************/
+
+#form-section{
+    display: block;
+    position: relative;
+    height: 450px;
+    width: 95%;
+    margin: 70px auto;
+    background-color: whitesmoke;
+    border-radius: 20px;
+
+}
+
+#feedheader{
+    text-align: center;
+    font-size: 70px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    font-family: 'Lobster', cursive;
+    color:#4730d5;
+}
+
+#form-section input{
+    text-align: left;
+    margin: 20px 0;
+}
+
+#feedbackForm{
+    display: inline-block;
+    padding-left: 30px;
+    width: 60%;
+}
+
+#feedbackForm #name{
+    width: 15em;
+    height: 2.5em;
+}
+
+#feedbackForm #textarea{
+    width: 30em;
+    height: 5em;
+}
+
+#feedbackForm button{
+    width:80px;
+    height: 40px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#results{
+    float:right;
+    width: 40%;
+    height: 320px;
+    overflow-y: scroll;
+
+}
+
+#results h3{
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+
+.feedName{
+    color: grey;
+    padding-bottom: 10px;
+}
+.feedText{
+    text-indent: 25px;
+    padding-bottom: 30px;
+}
+
+.team-list img {
+  width: 50%;
+}
+
+.team-list .content {
+  width: 50%;
+}
+
+.team-list .content .follow {
+  position: absolute;
+  bottom: 24px;
+}
+
+.team-list:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.team, .team-list {
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+}
+
+.team .content .title, .team-list .content .title {
+  font-size: 18px;
+}
+
+.team .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.team .member-position, .team .team-social {
+  position: absolute;
+  bottom: -35px;
+  right: 0;
+  left: 0;
+  margin: auto 10%;
+  z-index: 99;
+}
+
+.team .team-social {
+  bottom: 40px;
+  opacity: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+}
+
+.team:hover {
+  -webkit-transform: translateY(-7px);
+          transform: translateY(-7px);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.team:hover .overlay {
+  opacity: 0.6;
+}
+
+.team:hover .team-social {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .team-list img,
+  .team-list .content {
+    width: 100%;
+    float: none !important;
+  }
+  .team-list img .follow,
+  .team-list .content .follow {
+    position: relative;
+    bottom: 0;
+  }
+}
+
+.social-icon.social li a {
+    color: #adb5bd;
+    border-color: #adb5bd;
+}
+.social-icon li a {
+    color: #35404e;
+    border: 1px solid #35404e;
+    display: inline-block;
+    height: 32px;
+    text-align: center;
+    font-size: 15px;
+    width: 32px;
+    line-height: 30px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+}
+.rounded {
+    border-radius: 5px !important;
+}
+
+.para-desc {
+    max-width: 600px;
+}
+.text-muted {
+    color: #8492a6 !important;
+}
+
+.section-title .title {
+    letter-spacing: 0.5px;
+    font-size: 30px;
+}

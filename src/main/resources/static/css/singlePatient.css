@@ -1,8 +1,4 @@
-body {
-  color: #1a202c;
-  text-align: left;
-  background-color: #e2e8f0;
-}
+
 .content {
   background-image: url(https://via.placeholder.com/1100x500/FFB6C1/000000);
 }
@@ -112,11 +108,23 @@ ol {
 }
 
 .patientInfo2 {
-  width: 80%;
+  width: 93%;
   margin: 0 auto;
-  padding-left: 133px;
+  padding-left: 166px;
 }
 
 hr {
-  width: 29em;
+  width: 76%;
 }
+
+.main-breadcrumb a {
+  text-decoration: none;
+}
+
+.presHeader {
+  margin: 60px 0;
+}
+.delete11{
+    font-size: 25px ;
+}
+

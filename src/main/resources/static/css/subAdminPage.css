@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+.container2 {
+  margin-top: 20px;
+  min-height: 57.3vh;
+}
+
+.tabss {
+  width: 15% !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #09aaa8 !important;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: black;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+.delete11,
+.edit11 {
+  font-size: 20px;
+}
+
+.btn-container {
+  margin: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-container button {
+  margin-left: 20px;
+  background-color: #09aaa8;
+  border: 1px solid transparent;
+}
+.btn-container button:hover {
+  background-color: white;
+  border: 1px solid #09aaa8;
+  color: black;
+}

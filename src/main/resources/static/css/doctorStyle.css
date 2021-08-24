@@ -1,12 +1,68 @@
-.all-info-icon{
-    font-size: 25px;
+.all-info-icon {
+  font-size: 30px;
 }
 
-.addmedicine{
-    cursor:pointer;
-    font-size: 35px;
+.addmedicine {
+  cursor: pointer;
+  font-size: 40px;
+  vertical-align: middle;
 }
 
-#med1,#med2, #med3,#med4 {
-    display: none;
+#med1,
+#med2,
+#med3,
+#med4 {
+  display: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.medDiv input {
+  margin-bottom: 15px;
+  width: 50px;
+}
+
+.medDiv textarea {
+  width: 90%;
+}
+
+.medDiv input,
+.medDiv textarea,
+.medDiv select {
+  border-color: grey;
+  border-radius: 5px;
+}
+
+.modal-dialog {
+  max-width: 55% !important;
+}
+
+.seperator {
+  font-style: normal;
+  margin-left: 5%;
+}
+
+.tabss {
+  width: 15% !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #09aaa8 !important;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: black;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+.Maincontainer {
+  min-height: 23.65rem;
 }

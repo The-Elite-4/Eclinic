@@ -14,7 +14,7 @@
 <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
 <div class="form-container">
     <form action="/signup" method="post" th:object="${subAdmin}">
-        <h2>Sub admin info</h2>
+        <h2 class="mb-3">Your info</h2>
         <div class="mb-3">
             <label for="username" class="form-label">User Name</label>
             <input type="text" class="form-control" id="username" th:field="*{username}" required>
@@ -47,7 +47,7 @@
             <input type="text" class="form-control" id="licenseId" th:field="*{licenseId}" minlength="10" maxlength="10" required>
         </div>
     <!-------------------------------------------- clinic form------------------------------------>
-        <h2>Clinic info</h2>
+        <h2 class="mb-3 mt-5">Clinic info</h2>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
@@ -68,7 +68,7 @@
             <label for="logo" class="form-label">Logo</label>
             <input type="text" class="form-control" id="logo" name="logo" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary loginButton">Signup</button>
     </form>
 </div>
 <div th:replace="footer :: footer"></div><!---------- this is fragment ------------>
