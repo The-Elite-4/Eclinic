@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import com.example.Eclinic.models.Clinic;
 import com.example.Eclinic.repositories.DoctorRepo;
@@ -21,7 +24,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.print.Doc;
 import java.security.Principal;
-
+import java.util.List;
+import java.util.Scanner;
 
 
 @Controller
@@ -42,46 +46,34 @@ public class DoctorController {
     @Autowired
     SecretaryRepo secretaryRepo;
 
-//    @GetMapping("/doctorPage")
-//    public String getDoctorPage(Model m){
-//        // get
-//        m.addAttribute("patients", patientRepo.findAll());
-////        m.addAttribute("doctors", sceduleRepo.findAll());
-//        // post
-//        m.addAttribute("prescription", new Prescription());
-//        return "doctordashboard.html";
-//    }
-//
-//    @PostMapping("/addPrescription")
-//    public RedirectView addPrescription(@ModelAttribute Prescription prescription){
-//
-//        //
-//
-//        // add patient and doctor objects
-//        return new RedirectView("/doctorPage");
-//    }
 
-    /////////////////////////////////////// TEST ////////////////////////////////
     @GetMapping("/doctorPage")
-    public String getDoctorPage(Model m,Principal p) {
+    public String getDoctorPage(Model m,Principal p) throws FileNotFoundException {
         Integer clinicId = doctorRepo.findByUsername(p.getName()).getClinic().getId();
         m.addAttribute("patients", patientRepo.findTop5ByClinicIdOrderByIdAsc(clinicId));
-//        m.addAttribute("doctors", sceduleRepo.findAll());
-        // post
-        ArrayList<Medicine> allmedicines = new ArrayList<>(10);
-//        m.addAttribute("allmedicines",allmedicines);
-        m.addAttribute("medicine",new Medicine());
-        return "doctordashboardTEST.html";
+        // for post
+        m.addAttribute("medicine1",new Medicine());
+        m.addAttribute("medicine2",new Medicine());
+        m.addAttribute("medicine3",new Medicine());
+        m.addAttribute("medicine4",new Medicine());
+        // send list of medicines from reader
+        List<String> allMeds = new ArrayList<String>();
+        File file = new File("src/main/resources/med.txt");
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+          allMeds.add(scanner.nextLine());
+        }
+        m.addAttribute("medNames",allMeds);
+        return "doctordashboard.html";
     }
 
     @PostMapping("/addPrescription")
-    public RedirectView addPrescription(@ModelAttribute Medicine medicine) {
-        System.out.println(medicine.getName());
-        System.out.println(medicine.getDetails());
-        System.out.println(medicine.getDurationType());
-        System.out.println(medicine.isBeforeMeals());
-
-
+    public RedirectView addPrescription(@ModelAttribute Medicine medicine1,@RequestParam String diagnosis,
+                                        @RequestParam String comment, @RequestParam String nextVisit) {
+        System.out.println(medicine1.getName());
+        System.out.println(medicine1.getDetails());
+        System.out.println(diagnosis + ' ' + comment + ' '+ nextVisit);
+        System.out.println(medicine1.isBeforeMeals());
         // add patient and doctor objects
         return new RedirectView("/doctorPage");
     }
