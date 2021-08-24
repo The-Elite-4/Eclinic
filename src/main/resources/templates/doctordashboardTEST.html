@@ -99,49 +99,43 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/addPrescription" th:object="${prescription}" method="post">
-                    <div class="mb-3">
-                        <label for="nextVisit" class="form-label">Username sdfdsf </label>
-                        <input type="text" class="form-control" id="nextVisit" th:field="*{nextVisit}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password fsdfsdfsdf</label>
-                        <input type="password" class="form-control" id="password" th:field="*{password}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="firstName">First Name </label>
-                        <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="lastName">Last Name </label>
-                        <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="profilePic">profile Picture </label>
-                        <input type="text" class="form-control" id="profilePic" th:field="*{profilePic}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="signatureUrl">Signature Url </label>
-                        <input type="text" class="form-control" id="signatureUrl" th:field="*{signatureUrl}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Gender</label>
-                        <select class="form-select" th:field="*{gender}">
-                            <option th:value="Male" th:text="Male" selected></option>
-                            <option th:value="Female" th:text="Female"></option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="phoneNumber">Phone Number </label>
-                        <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="certificateId">Certificate Id </label>
-                        <input type="text" class="form-control" id="certificateId" th:field="*{certificateId}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="doctorMajor">Doctor Major </label>
-                        <input type="text" class="form-control" id="doctorMajor" th:field="*{doctorMajor}">
+                <form action="/addPrescription" th:object="${allmedicines}" method="post">
+                    <!-------------------- here prescription fields--------------------->
+
+                    <!----------------- each form is medicine object ------------------>
+                    <div th:object="${medicine}">
+                        <div class="mb-3">
+                            <label class="form-check-label" for="name">name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="dosage">dosage </label>
+                            <input type="text" class="form-control" id="dosage" th:field="*{dosage}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="unit">unit</label>
+                            <input type="text" class="form-control" id="unit" th:field="*{unit}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="timesPer">timesPer </label>
+                            <input type="text" class="form-control" id="timesPer" th:field="*{timesPer}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="duration">duration </label>
+                            <input type="text" class="form-control" id="duration" th:field="*{duration}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="durationType">durationType </label>
+                            <input type="text" class="form-control" id="durationType" th:field="*{durationType}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="details">details </label>
+                            <input type="text" class="form-control" id="details" th:field="*{details}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-check-label" for="beforeMeals">beforeMeals </label>
+                            <input type="checkbox" class="form-control" id="beforeMeals" th:field="*{beforeMeals}">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Add</button>
                 </form>

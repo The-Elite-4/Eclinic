@@ -17,7 +17,7 @@ public class Medicine {
     private String details; // how and when to take medicinine
     private boolean beforeMeals;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Prescription prescription;
     ////////////////////////////////////constructor////////////////////////////////////////
 

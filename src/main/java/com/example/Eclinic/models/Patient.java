@@ -1,5 +1,8 @@
 package com.example.Eclinic.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +26,10 @@ public class Patient {
     @ManyToOne
     private Clinic clinic;
 
-    @OneToMany(mappedBy = "patient")
+    @ManyToOne
+    private Doctor doctor;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private Set<Prescription> prescription = new HashSet<Prescription>();
 
     ////////////////////////////////////constructor////////////////////////////////////////
