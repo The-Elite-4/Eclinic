@@ -1,3 +1,12 @@
 .all-info-icon{
     font-size: 25px;
 }
+
+.addmedicine{
+    cursor:pointer;
+    font-size: 35px;
+}
+
+#med1,#med2, #med3,#med4 {
+    display: none;
+}

@@ -9,13 +9,12 @@ public class Medicine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer dosage;
+    private String dosage;
     private String unit;
     private String timesPer;
-    private Integer duration;
+    private String duration;
     private String durationType;
     private String details; // how and when to take medicinine
-    private boolean beforeMeals;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Prescription prescription;
@@ -25,8 +24,8 @@ public class Medicine {
     public Medicine() {
     }
 
-    public Medicine(String name, Integer dosage, String unit, String timesPer, Integer duration, String durationType,
-                    String details, boolean beforeMeals, Prescription prescription) {
+    public Medicine(String name, String dosage, String unit, String timesPer, String duration, String durationType,
+                    String details, Prescription prescription) {
         this.name = name;
         this.dosage = dosage;
         this.unit = unit;
@@ -34,7 +33,6 @@ public class Medicine {
         this.duration = duration;
         this.durationType = durationType;
         this.details = details;
-        this.beforeMeals = beforeMeals;
         this.prescription = prescription;
     }
 
@@ -56,11 +54,11 @@ public class Medicine {
         this.name = name;
     }
 
-    public Integer getDosage() {
+    public String getDosage() {
         return dosage;
     }
 
-    public void setDosage(Integer dosage) {
+    public void setDosage(String dosage) {
         this.dosage = dosage;
     }
 
@@ -80,11 +78,11 @@ public class Medicine {
         this.timesPer = timesPer;
     }
 
-    public Integer getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -104,13 +102,6 @@ public class Medicine {
         this.details = details;
     }
 
-    public boolean isBeforeMeals() {
-        return beforeMeals;
-    }
-
-    public void setBeforeMeals(boolean beforeMeals) {
-        this.beforeMeals = beforeMeals;
-    }
 
     public Prescription getPrescription() {
         return prescription;

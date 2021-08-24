@@ -4,51 +4,85 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/headerFooterStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/singlePatient.css}">
     <title>Patient Page</title>
 </head>
 <body>
 <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
-<!------- Table Of Patient's Information-------->
-<div class="table-container">
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Date Of Birth</th>
-            <th>Phone Number</th>
-            <th>Weight</th>
-            <th>Age</th>
-            <th>Drug Allergies</th>
-        </tr>
-        <tr>
-            <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
-            <td th:text="${patient.gender}"></td>
-            <td th:text="${patient.dateOfBirth}"></td>
-            <td th:text="${patient.phoneNumber}"></td>
-            <td th:text="${patient.weight}"></td>
-            <td th:text="${patient.age}"></td>
-            <td th:text="${patient.drugAllergies}"></td>
-        </tr>
-        <tr>
-            <th>createdAt</th>
-            <th>nextVisit</th>
-            <th>diagnosis</th>
-            <th>comment</th>
-            <th>doctor</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-        </tr>
-    </table>
+<div class="container mt-3">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="main-breadcrumb mb-0">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/doctorPage}"> <i class="fas fa-arrow-circle-left"></i> Return
+                to list of patients</a></li>
+        </ol>
+    </nav>
+    <!-- /Breadcrumb -->
+
+    <div class="text-center em-background-box-content">
+        <img class="img-circle img-em-border" th:src="@{/images/patient.png}" width="150" height="150">
+
+        <h1 th:text="${patient.firstName}+' '+${patient.lastName}"></h1>
+        <h4>
+            <span class="thin" th:text="${patient.clinic.name}+' clinic'"></span>
+        </h4>
+    </div>
+    <div class="patientInfo mt-3">
+        <div class="text-center patientInfo2">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Full Name</h5>
+                </div>
+                <div class="col-sm-9" th:text="${patient.firstName}+ ' '+ ${patient.lastName}">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Email</h5>
+                </div>
+                <div class="col-sm-9">
+                    fip@jukmuh.al
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Phone</h5>
+                </div>
+                <div class="col-sm-9">
+                    (239) 816-9029
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Mobile</h5>
+                </div>
+                <div class="col-sm-9">
+                    (320) 380-4539
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Address</h5>
+                </div>
+                <div class="col-sm-9">
+                    Bay Area, San Francisco, CA
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div th:replace="footer :: footer"></div> <!---------This is the footer fragment-------->
 </body>
