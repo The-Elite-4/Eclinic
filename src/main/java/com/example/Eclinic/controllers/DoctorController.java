@@ -17,9 +17,9 @@ import com.example.Eclinic.repositories.SubAdminRepo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.security.Principal;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Controller
@@ -130,8 +130,20 @@ public class DoctorController {
 
 
     @GetMapping("/doctor/{id}")
-    public String getASpecificPatient(@PathVariable Integer id, Model m, Principal p){
-        return "singledoctor.html";
+    public String getASpecificPatient(@PathVariable Integer id, Model m){
+        Set<Patient> patients;
+        Set<Patient> savedPatients = new HashSet<>();
+        Set<Prescription> prescriptions = prescriptionRepo.findPrescriptionIdByDoctorId(id);
+        for(Prescription pre : prescriptions){
+            System.out.println(pre.getId());
+            patients = patientRepo.findByPrescriptionId(pre.getId());
+            savedPatients.addAll(patients);
+            System.out.println(savedPatients);
+        }
+        System.out.println(savedPatients);
+        m.addAttribute("patient", savedPatients);
+
+        return "patientsofsingledoctor.html";
     }
 
 }

@@ -92,4 +92,10 @@ public class SecretaryController {
         secretaryRepo.save(oldSec);
         return new RedirectView("/subAdminPanel");
     }
+
+    @GetMapping("/secretary/{id}")
+    public String showSecretaryProfile(@PathVariable Integer id, Model m){
+        m.addAttribute("secretary", secretaryRepo.findById(id).get());
+        return "singlesecretary.html";
+    }
 }

@@ -23,17 +23,6 @@ public class PrescriptionController {
     @Autowired
     PatientRepo patientRepo;
 
-//    @GetMapping("/")
-//    public String addPrescription(Model m){
-//        Doctor doctor = doctorRepo.findById(2).get();
-//        Patient patient = patientRepo.findById(2).get();
-//        Prescription prescription = new Prescription("22-10-2021", "another stomachache ", "I don't know",
-//                doctor, patient);
-//        prescriptionRepo.save(prescription);
-//        return "home.html";
-//    }
-
-
 
 
 
