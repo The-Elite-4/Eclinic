@@ -46,8 +46,9 @@ public class SecretaryController {
 
 
     @GetMapping("/secretary")
-    public String getSecretaryDashboard(Model m){
-        m.addAttribute("patients", patientRepo.findAll());
+    public String getSecretaryDashboard(Model m, Principal p){
+        Integer clinicId = secretaryRepo.findByUsername(p.getName()).getClinic().getId();
+        m.addAttribute("patients", patientRepo.findByCliniId(clinicId));
         m.addAttribute("patient", new Patient());
         return "secretarydashboard.html";
     }

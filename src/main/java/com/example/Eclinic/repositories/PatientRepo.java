@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface PatientRepo extends CrudRepository<Patient,Integer> {
 //    public Patient findByUsername (String username);
+
 }

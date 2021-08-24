@@ -85,15 +85,13 @@ public class AuthControllers {
     ////////////////////////////////////////// redircet to dashboard page //////////////////////
     @GetMapping("/myDashboard")
     public RedirectView getDashbaordPage(Model model, Principal p,Authentication authentication){
-        System.out.println(authentication.getAuthorities().toString());
+        System.out.println(authentication.getAuthorities().toString() + "1");
         if(authentication.getAuthorities().toString().equals("[SubAdmin]"))
             return new RedirectView("/subAdminPanel");
         else if (authentication.getAuthorities().toString().equals("[Doctor]"))
             return new RedirectView("/subAdminPanel");
         else if(authentication.getAuthorities().toString().equals("[Admin]"))
             return new RedirectView("/adminPanel");
-        else if(authentication.getAuthorities().toString().equals("[Secretary]"))
-        return new RedirectView("/subAdminPanel");
         else return new RedirectView("/secretary");
     }
 }
