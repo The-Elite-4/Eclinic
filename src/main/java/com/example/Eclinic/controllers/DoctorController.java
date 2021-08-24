@@ -63,9 +63,9 @@ public class DoctorController {
 
     /////////////////////////////////////// TEST ////////////////////////////////
     @GetMapping("/doctorPage")
-    public String getDoctorPage(Model m) {
-        // get
-        m.addAttribute("patients", patientRepo.findAll());
+    public String getDoctorPage(Model m,Principal p) {
+        Integer clinicId = doctorRepo.findByUsername(p.getName()).getClinic().getId();
+        m.addAttribute("patients", patientRepo.findTop5ByClinicIdOrderByIdAsc(clinicId));
 //        m.addAttribute("doctors", sceduleRepo.findAll());
         // post
         ArrayList<Medicine> allmedicines = new ArrayList<>(10);
