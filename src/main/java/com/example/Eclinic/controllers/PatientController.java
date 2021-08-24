@@ -39,4 +39,6 @@ public class PatientController {
         return new RedirectView("/secretary");
     }
 
+
+
 }

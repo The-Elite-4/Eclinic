@@ -100,7 +100,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="location.href = '/doctorPage'"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{'/addPrescription/'+${singlePatient.id}}" method="post" id="mainForm">
+                <form th:action="@{'/addPrescription/'+${singlePatient.id}}" th:object="${medicine}"  method="post" id="mainForm">
                     <!----------------------------------prescription info fields-------------------------------------->
                     <div class="mb-3">
                         <label for="diagnosis" class="form-label">Diagnosis</label>
@@ -116,7 +116,7 @@
                     </div>
                     <!----------------------------------medicine divs -------------------------------------->
                     <i class="fas fa-plus-circle addmedicine" id="addmed"></i>
-                    <form id="med1" th:object="${medicine1}">
+                    <div id="med1">
                         <p>medicine 1</p>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Unit</label>
-                            <select class="form-select" id="unit" th:field="${medicine1.unit}">
+                            <select class="form-select" id="unit" th:field="*{unit}">
                                 <option th:value="ml" th:text="ml" selected></option>
                                 <option th:value="pill" th:text="pill"></option>
                             </select>
@@ -162,15 +162,9 @@
                                   style="height: 100px"></textarea>
                             <label for="details">More details</label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals">
-                                before Meals
-                            </label>
-                        </div>
-                    </form>
+                    </div>
                     <!------------------------------------- medicine 2 -------------------------------------->
-                    <form id="med2" th:object="${medicine2}">
+                    <div id="med2">
                         <p>medicine 222222222222</p>
                         <div class="mb-3">
                             <label for="name1" class="form-label">Name</label>
@@ -216,15 +210,9 @@
                                   style="height: 100px"></textarea>
                             <label for="details1">More details</label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals1" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals1">
-                                before Meals
-                            </label>
-                        </div>
-                    </form>
+                    </div>
                     <!------------------------------------- medicine 3 -------------------------------------->
-                    <form id="med3" th:object="${medicine3}">
+                    <div id="med3">
                         <p>medicine 3333333333</p>
                         <div class="mb-3">
                             <label for="name2" class="form-label">Name</label>
@@ -270,15 +258,9 @@
                                   style="height: 100px"></textarea>
                             <label for="details2">More details</label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals2" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals2">
-                                before Meals
-                            </label>
-                        </div>
-                    </form>
+                    </div>
                     <!------------------------------------- medicine 4 -------------------------------------->
-                    <form id="med4" th:object="${medicine4}">
+                    <div id="med4">
                         <p>medicine 4444444444444</p>
                         <div class="mb-3">
                             <label for="name3" class="form-label">Name</label>
@@ -324,13 +306,7 @@
                                   style="height: 100px"></textarea>
                             <label for="details3">More details</label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="beforeMeals3" th:field="*{beforeMeals}">
-                            <label class="form-check-label" for="beforeMeals3">
-                                before Meals
-                            </label>
-                        </div>
-                    </form>
+                    </div>
                     <button type="submit" class="btn btn-primary" id="multipleFormSubmit">Add</button>
                 </form>
             </div>

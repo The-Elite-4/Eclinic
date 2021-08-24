@@ -1,8 +1,7 @@
 package com.example.Eclinic.controllers;
 
 import com.example.Eclinic.models.*;
-import com.example.Eclinic.repositories.PatientRepo;
-import com.example.Eclinic.repositories.PrescriptionRepo;
+import com.example.Eclinic.repositories.*;
 import javassist.expr.Instanceof;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +15,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import com.example.Eclinic.repositories.DoctorRepo;
-import com.example.Eclinic.repositories.SecretaryRepo;
-import com.example.Eclinic.repositories.SubAdminRepo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +42,8 @@ public class DoctorController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     SecretaryRepo secretaryRepo;
+    @Autowired
+    MedicineRepo medicineRepo;
 
 
     @GetMapping("/doctorPage")
@@ -56,10 +54,10 @@ public class DoctorController {
         m.addAttribute("singlePatient", new Patient());
         m.addAttribute("showPresModal", false);
         // for post
-        m.addAttribute("medicine1", new Medicine());
-        m.addAttribute("medicine2", new Medicine());
-        m.addAttribute("medicine3", new Medicine());
-        m.addAttribute("medicine4", new Medicine());
+        m.addAttribute("medicine", new Medicine());
+//        m.addAttribute("medicine2", new Medicine());
+//        m.addAttribute("medicine3", new Medicine());
+//        m.addAttribute("medicine4", new Medicine());
         // send list of medicines from reader
         List<String> allMeds = new ArrayList<String>();
         File file = new File("src/main/resources/med.txt");
@@ -80,10 +78,10 @@ public class DoctorController {
         m.addAttribute("singlePatient", patientRepo.findById(id).get());
         m.addAttribute("showPresModal", true);
         // for post
-        m.addAttribute("medicine1", new Medicine());
-        m.addAttribute("medicine2", new Medicine());
-        m.addAttribute("medicine3", new Medicine());
-        m.addAttribute("medicine4", new Medicine());
+        m.addAttribute("medicine", new Medicine());
+//        m.addAttribute("medicine2", new Medicine());
+//        m.addAttribute("medicine3", new Medicine());
+//        m.addAttribute("medicine4", new Medicine());
         // send list of medicines from reader
         List<String> allMeds = new ArrayList<String>();
         File file = new File("src/main/resources/med.txt");
@@ -97,10 +95,8 @@ public class DoctorController {
 
     @PostMapping("/addPrescription/{id}")
     public RedirectView addPrescription(@PathVariable Integer id, Principal p,
-                                        @ModelAttribute("medicine1") Medicine medicine1,
-                                        @ModelAttribute("medicine2") Medicine medicine2,
-                                        @RequestParam String diagnosis, @RequestParam String comment,
-                                        @RequestParam String nextVisit) {
+                                        @ModelAttribute("medicine") Medicine medicine, @RequestParam String diagnosis
+            , @RequestParam String comment, @RequestParam String nextVisit) {
 
         /////////////// save prescreption data
         // docotor
@@ -111,10 +107,21 @@ public class DoctorController {
         prescriptionRepo.save(prescription);
 
         /////////////// save medicine data
-        System.out.println(medicine1.getName());
-        System.out.println(medicine2.getName());
-        System.out.println(medicine1.getDosage());
-        System.out.println(medicine2.getDosage());
+        String[] names = medicine.getName().split(",");
+        String[] dosages = medicine.getDosage().split(",");
+        String[] units = medicine.getUnit().split(",");
+        String[] timesPers = medicine.getTimesPer().split(",");
+        String[] durations = medicine.getDuration().split(",");
+        String[] durationTypes = medicine.getDurationType().split(",");
+        String[] details = medicine.getDetails().split(",");
+
+        for (int i = 0; i < names.length; i++) {
+            if(!names[i].equals("Select-Medicine")){
+                Medicine med = new Medicine(names[i],dosages[i],units[i],timesPers[i],durations[i],durationTypes[i],
+                        details[i],prescription);
+                medicineRepo.save(med);
+            }
+        }
         return new RedirectView("/doctorPage");
     }
 
