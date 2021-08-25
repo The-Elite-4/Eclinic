@@ -21,11 +21,11 @@ public class SubAdmin implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    private String profilePic; //we might make it uploaded
+    private String profilePic;
     private String gender;
     private boolean isEnabled;
     // verification fields
-    private Integer licenseId;
+    private String licenseId;
 
     private String authority = "SubAdmin";
 
@@ -42,7 +42,7 @@ public class SubAdmin implements UserDetails {
     }
 
     public SubAdmin(String username, String password, String firstName, String lastName, String profilePic,
-                    String gender, Integer licenseId, Clinic clinic) {
+                    String gender, String licenseId, Clinic clinic) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -154,11 +154,11 @@ public class SubAdmin implements UserDetails {
         this.clinic = clinic;
     }
 
-    public Integer getLicenseId() {
+    public String getLicenseId() {
         return licenseId;
     }
 
-    public void setLicenseId(Integer licenseId) {
+    public void setLicenseId(String licenseId) {
         this.licenseId = licenseId;
     }
 }

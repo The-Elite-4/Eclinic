@@ -1,7 +1,8 @@
 package com.example.Eclinic.controllers;
 
-
-import com.example.Eclinic.models.*;
+import com.example.Eclinic.models.Clinic;
+import com.example.Eclinic.models.Patient;
+import com.example.Eclinic.models.Prescription;
 import com.example.Eclinic.repositories.MedicineRepo;
 import com.example.Eclinic.repositories.PatientRepo;
 import com.example.Eclinic.repositories.PrescriptionRepo;
@@ -16,6 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
+import java.util.Date;
 
 @Controller
 public class PatientController {
@@ -34,6 +41,9 @@ public class PatientController {
         Patient patient = patientRepo.findById(id).get();
         m.addAttribute("patient", patient);
 
+        //// for sort
+        m.addAttribute("byId", Comparator.comparing(Prescription::getId));
+
         return "singlepatient.html";
     }
 
@@ -49,9 +59,19 @@ public class PatientController {
 
 
     @PostMapping("/addPatient")
-    public RedirectView addPatient(Principal p, @ModelAttribute Patient patient){
+    public RedirectView addPatient(Principal p, @ModelAttribute Patient patient) throws ParseException {
         Clinic clinic = secretaryRepo.findByUsername(p.getName()).getClinic();
         patient.setClinic(clinic);
+
+        //////////////////////////// calculate age
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(patient.getDateOfBirth());
+        Instant instant = date.toInstant();
+        ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+        LocalDate givenDate = zone.toLocalDate();
+        Period period = Period.between(givenDate, LocalDate.now());
+        patient.setAge(period.getYears());
+
         patientRepo.save(patient);
         return new RedirectView("/secretary");
     }

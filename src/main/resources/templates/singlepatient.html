@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/js/patientPage.js}"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/headerFooterStyle.css}">
@@ -22,7 +24,7 @@
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="main-breadcrumb mb-0">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/doctorPage}"> <i class="fas fa-arrow-circle-left"></i> Return
+            <li class="breadcrumb-item"><a th:href="@{/myDashboard}"> <i class="fas fa-arrow-circle-left"></i> Return
                 to list of patients</a></li>
         </ol>
     </nav>
@@ -30,7 +32,6 @@
 
     <div class="text-center em-background-box-content">
         <img class="img-circle img-em-border" th:src="@{/images/patient.png}" width="150" height="150">
-
         <h1 th:text="${patient.firstName}+' '+${patient.lastName}"></h1>
         <h4>
             <span class="thin" th:text="${patient.clinic.name}+' clinic'"></span>
@@ -48,40 +49,90 @@
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <h5 class="mb-0">Email</h5>
+                    <h5 class="mb-0">Gender</h5>
                 </div>
-                <div class="col-sm-9">
-                    fip@jukmuh.al
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-3">
-                    <h5 class="mb-0">Phone</h5>
-                </div>
-                <div class="col-sm-9">
-                    (239) 816-9029
+                <div class="col-sm-9" th:text="${patient.gender}">
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <h5 class="mb-0">Mobile</h5>
+                    <h5 class="mb-0">Date Of Birth</h5>
                 </div>
-                <div class="col-sm-9">
-                    (320) 380-4539
+                <div class="col-sm-9" th:text="${patient.dateOfBirth}">
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <h5 class="mb-0">Address</h5>
+                    <h5 class="mb-0">Phone Number</h5>
                 </div>
-                <div class="col-sm-9">
-                    Bay Area, San Francisco, CA
+                <div class="col-sm-9" th:text="${patient.phoneNumber}">
+
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Weight</h5>
+                </div>
+                <div class="col-sm-9" th:text="${patient.weight}">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Age</h5>
+                </div>
+                <div class="col-sm-9" th:text="${patient.age}">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5 class="mb-0">Drug Allergies</h5>
+                </div>
+                <div class="col-sm-9" th:text="${patient.drugAllergies}">
                 </div>
             </div>
         </div>
+    </div>
+    <h1 class="presHeader">All prescriptions</h1>
+    <div class="prescriptions">
+        <table class="table">
+            <thead>
+            <tr class="view">
+                <th scope="col">#</th>
+                <th scope="col">Create Date</th>
+                <th scope="col">Next Visit</th>
+                <th scope="col">Diagnosis</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Medicines</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="presc :${#lists.sort(patient.prescription,byId)}">
+                <td th:text="${presc.id}"></td>
+                <td th:text="${presc.createdAt}"></td>
+                <td th:text="${presc.nextVisit}"></td>
+                <td th:text="${presc.diagnosis}"></td>
+                <td th:text="${presc.comment}"></td>
+                <td>
+                    <ul class="list-group list-group-horizontal" th:each="med :${presc.medicine}">
+                        <li class="list-group-item" th:text="${med.name}"></li>
+                        <li class="list-group-item"
+                            th:text="${med.dosage}+ '' +${med.unit}+' per '+${med.timesPer}"></li>
+                        <li class="list-group-item" th:text="${'for ' +med.duration}+' ' +${med.durationType}"></li>
+                        <li class="list-group-item" th:text="${med.details}"></li>
+                    </ul>
+                </td>
+                <td>
+                    <a th:href="@{/deletePersc/{perscId}/{patientId}(perscId=${presc.id},patientId=${patient.id})}"><i class="fas fa-trash-alt delete11"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <div th:replace="footer :: footer"></div> <!---------This is the footer fragment-------->

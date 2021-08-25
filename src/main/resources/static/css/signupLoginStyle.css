@@ -1,4 +1,52 @@
-.form-container{
-    width: 60%;
-    margin: 10px auto;
+.form-container {
+  width: 50%;
+  margin: 30px auto;
+  min-height: 44.7vh;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 5px 50px;
+}
+
+.loginButton {
+  width: 70%;
+  height: 48px;
+  border-radius: 15px;
+  background-color: #09aaa8;
+  margin: 15px 0;
+  border: none;
+}
+.loginButton:hover {
+  background-color: #016d6b !important;
+}
+
+.underP {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.signupForm {
+  display: flex;
+  gap: 70px;
+  align-items: baseline;
+}
+
+.YourInfo {
+  flex: 1;
+}
+
+.ClinicInfo {
+  flex: 1;
+}
+
+.btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+.form-container2 {
+  width: 30%;
+  margin: 50px auto;
+  min-height: 44.7vh;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 50px;
 }

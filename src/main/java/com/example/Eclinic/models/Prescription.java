@@ -23,14 +23,14 @@ public class Prescription {
     private String diagnosis;
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Doctor doctor;
-
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Patient patient;
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "prescription",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Medicine> medicine = new HashSet<Medicine>();
     //////////////////////////////////// constructor ////////////////////////////////////////
 

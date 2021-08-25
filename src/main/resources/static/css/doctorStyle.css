@@ -1,12 +1,86 @@
-.all-info-icon{
-    font-size: 25px;
+.all-info-icon {
+  font-size: 30px;
+  color: rgba(17, 17, 17, 0.753);
 }
 
-.addmedicine{
-    cursor:pointer;
-    font-size: 35px;
+.all-info-icon:hover {
+  color: rgba(17, 17, 17, 0.432);
 }
 
-#med1,#med2, #med3,#med4 {
-    display: none;
+.all-info-icon2 {
+  font-size: 30px;
+}
+
+.all-info-icon2:hover {
+  color: rgba(0, 151, 252, 0.712);
+}
+
+.addmedicine {
+  cursor: pointer;
+  font-size: 40px;
+  vertical-align: middle;
+}
+
+#med1,
+#med2,
+#med3,
+#med4 {
+  display: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.medDiv input {
+  margin-bottom: 15px;
+  width: 50px;
+}
+
+.medDiv textarea {
+  width: 90%;
+}
+
+.medDiv input,
+.medDiv textarea,
+.medDiv select {
+  border-color: grey;
+  border-radius: 5px;
+}
+
+.modal-dialog {
+  max-width: 55% !important;
+}
+
+.seperator {
+  font-style: normal;
+  margin-left: 5%;
+}
+
+.tabss {
+  width: 17% !important;
+  border-right: 1px solid lightgray;
+  height: 191px;
+  padding-right: 17px;
+  font-size: 18px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #09aaa8 !important;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: black;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+.Maincontainer {
+  margin-top: 50px;
+  min-height: 24rem;
 }

@@ -1,5 +1,8 @@
 package com.example.Eclinic.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,12 +17,11 @@ public class Medicine {
     private String timesPer;
     private String duration;
     private String durationType;
-    private String details; // how and when to take medicinine
+    private String details;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Prescription prescription;
     ////////////////////////////////////constructor////////////////////////////////////////
-
 
     public Medicine() {
     }

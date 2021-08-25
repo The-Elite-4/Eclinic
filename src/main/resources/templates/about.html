@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/headerFooterStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/about.css}">
+    <title>Home Page</title>
+</head>
+<body>
+<div th:replace="header :: header"></div> <!---------- this is fragment ------------>
+<section id="team" class="mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2>Meet Our Team </h2>
+                <p id="main-para">We are "the Elite 4" group, who met online and worked together to design, create and produce this website that we are proud of.</p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="member">
+                    <div class="member-img">
+                        <img th:src="@{/images/anas.png}" class="img-fluid" alt=".." height="315">
+                    </div>
+                    <div class="member-info">
+                        <h4>Anas Al-Ramahi</h4>
+                        <span>Software developer</span>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="member">
+                    <div class="member-img">
+                        <img th:src="@{/images/miral.png}" class="img-fluid" alt=".." height="315">
+                    </div>
+                    <div class="member-info">
+                        <h4>Miral Alabdallah</h4>
+                        <span>Web Developer</span>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="member">
+                    <div class="member-img">
+                        <img th:src="@{/images/ibrahim.jpg}" class="img-fluid" alt=".." height="315">
+                    </div>
+                    <div class="member-info">
+                        <h4>Ibrahim Aldereni</h4>
+                        <span>Front end developer</span>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="member">
+                    <div class="member-img">
+                        <img th:src="@{/images/abdulla.png}" class="img-fluid" alt=".." height="315">
+                    </div>
+                    <div class="member-info">
+                        <h4>Abdallah Alabed</h4>
+                        <span>Back end Developer</span>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!----------------------------------------- contact ------->
+<div class="container-contact100 mt-5 mb-5">
+    <div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
+
+    <div class="wrap-contact100">
+        <form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Contact Us
+				</span>
+
+            <div class="wrap-input100 validate-input" data-validate="Name is required">
+                <input class="input100" type="text" name="name" placeholder="Full Name">
+                <span class="focus-input100-1"></span>
+                <span class="focus-input100-2"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <input class="input100" type="text" name="email" placeholder="Email">
+                <span class="focus-input100-1"></span>
+                <span class="focus-input100-2"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Message is required">
+                <textarea class="input100" name="message" placeholder="Your Message"></textarea>
+                <span class="focus-input100-1"></span>
+                <span class="focus-input100-2"></span>
+            </div>
+
+            <div class="contact100-form-checkbox">
+                <input class="input-checkbox100" id="ckb1" type="checkbox" name="copy-mail">
+                <label class="label-checkbox100" for="ckb1">
+                    Send copy to my-email
+                </label>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <button class="contact100-form-btn" style="background-color: #09aaa8">
+                    Send Email
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="footer :: footer"></div> <!--This is the footer fragment-->
+</body>
+</html>

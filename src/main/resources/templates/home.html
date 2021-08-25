@@ -11,7 +11,7 @@
     <title>Home Page</title>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-<section id="banner" class="banner" th:style="'background: url(/images/bg-banner.jpg) no-repeat fixed;'">
+<section id="banner" class="banner" th:style="'background: url(/images/bg-banner.jpg) no-repeat center;background-size:cover' ">
     <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
     <div class="bg-color">
         <div class="container">
@@ -21,7 +21,7 @@
                         <img th:src="@{/images/logo.png}" class="img-responsive">
                     </div>
                     <div class="banner-text text-center">
-                        <h1 class="white">Healthcare at your desk!!</h1>
+                        <h1 class="white">Healthcare at your desk</h1>
                         <p>The smart choice in clinic management software</p>
                         <a href="/signup" class="btn btn-appoint">Add Clinic</a>
                     </div>
@@ -41,7 +41,8 @@
             <div class="col-md-4 col-sm-4">
                 <h2 class="ser-title">Our Service</h2>
                 <hr class="botm-line">
-                <p>eClinic is an easy-to-use clinic management software package, used by everyone from sole practitioners to multi-site and multi-disciplinary clinics around the world.</p>
+                <p>eClinic is an easy-to-use clinic management software package, used by everyone from sole
+                    practitioners to multi-site and multi-disciplinary clinics around the world.</p>
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="service-info">
@@ -87,27 +88,15 @@
     </div>
 </section>
 <!--/ service-->
-<!--cta-->
-<section id="cta-1" class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="schedule-tab">
-                dfgdfgfgdfg
-            </div>
-        </div>
-    </div>
-</section>
-<!--cta-->
 <!--about-->
 <section id="about" class="section-padding">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="section-title">
-                    <h2 class="head-title lg-line">The eClinic <br>Ultimate Dream</h2>
+                    <h2 class="head-title lg-line">eClinic <br>Ultimate Dream</h2>
                     <hr class="botm-line">
-                    <p class="sec-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua..</p>
+                    <p class="sec-para">We have a lot of dream and goals that we want to share with you.... </p>
                 </div>
             </div>
             <div class="col-md-9 col-sm-8 col-xs-12">
@@ -116,18 +105,19 @@
                         <div class="more-features-box-text-icon"><i class="fa fa-angle-right" aria-hidden="true"></i>
                         </div>
                         <div class="more-features-box-text-description">
-                            <h3>It's something important you want to know.</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.</p>
+                            <h3>Reach every doctor and every clinic</h3>
+                            <p>Every clinic needs to arrange customers, appointments and prescriptions And every doctor
+                                needs a system to do all this .</p>
                         </div>
                     </div>
                     <div class="more-features-box-text">
                         <div class="more-features-box-text-icon"><i class="fa fa-angle-right" aria-hidden="true"></i>
                         </div>
                         <div class="more-features-box-text-description">
-                            <h3>It's something important you want to know.</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.</p>
+                            <h3>Expand our application to satisfy wide variety of clients</h3>
+                            <p>Physiotherapy & sports injury clinics, Complementary therapy clinics, Radiology &
+                                radiography clinics, Psychiatric & psychology clinics, Private hospitals & health
+                                centres, Sleep disorder clinics, Slimming clinics.</p>
                         </div>
                     </div>
                 </div>
@@ -141,15 +131,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="ser-title">Meet Our Doctors!</h2>
+                <h2 class="ser-title">See Our Clinics!</h2>
                 <hr class="botm-line">
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="thumbnail">
-                    <img th:src="@{/images/doctor2.jpg}" alt="..." class="team-img">
+            <div class="col-md-3 col-sm-3 col-xs-6 card22" th:each="clinic: ${allClinics}">
+                <div class="thumbnail card11">
+                    <img th:src="${clinic.logo}" alt="..." class="team-img cardimg1">
                     <div class="caption">
-                        <h3>Amanda Denyl</h3>
-                        <p>Doctor</p>
+                        <h4 th:text="${clinic.name}"></h4>
+                        <p th:text="${clinic.address}"></p>
+                        <p th:text="${clinic.description}"></p>
                         <ul class="list-inline">
                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -173,7 +164,8 @@
             <div class="col-md-4 col-sm-4">
                 <div class="testi-details">
                     <!-- Paragraph -->
-                    <p>For me, e-clinic continues to give us absolutely everything we need in terms of the management of patients.</p>
+                    <p>For me, e-clinic continues to give us absolutely everything we need in terms of the management of
+                        patients.</p>
                 </div>
                 <div class="testi-info">
                     <!-- User Image -->
@@ -185,7 +177,8 @@
             <div class="col-md-4 col-sm-4">
                 <div class="testi-details">
                     <!-- Paragraph -->
-                    <p>I have always found e-clinic to be extremely helpful and flexible in making modifications to the system to suit our organisation.</p>
+                    <p>I have always found e-clinic to be extremely helpful and flexible in making modifications to the
+                        system to suit our organisation.</p>
                 </div>
                 <div class="testi-info">
                     <!-- User Image -->
@@ -197,7 +190,8 @@
             <div class="col-md-4 col-sm-4">
                 <div class="testi-details">
                     <!-- Paragraph -->
-                    <p>e-clinic enables me to book appointments more efficiently and automate all other activities around that.</p>
+                    <p>e-clinic enables me to book appointments more efficiently and automate all other activities
+                        around that.</p>
                 </div>
                 <div class="testi-info">
                     <!-- User Image -->
@@ -219,7 +213,10 @@
                 <h2 class="section-title white lg-line">« A few words<br> about us »</h2>
             </div>
             <div class="col-md-4 col-sm-5">
-                We've been providing a world class patient and clinic management system to healthcare for over 15 years e-clinic has been at the forefront of innovation and has often been the first with features now taken for granted such as text messaging, clinical document annotation, patient marketing, multi-layered diaries and integrated card payment.
+                We've been providing a world class patient and clinic management system to healthcare for over 15 years
+                e-clinic has been at the forefront of innovation and has often been the first with features now taken
+                for granted such as text messaging, clinical document annotation, patient marketing, multi-layered
+                diaries and integrated card payment.
                 <p class="text-right text-primary"><i>— eClinic Healthcare</i></p>
             </div>
             <div class="col-md-2"></div>
@@ -227,12 +224,6 @@
     </div>
 </section>
 <!--cta-->
-<!--contact-->
-<section id="contact" class="section-padding">
-    <div class="container">
-        <h2>Demo video</h2>
-    </div>
-</section>
 <img th:src="@{/images/backg.png}" alt="photo" class="prefooter-img">
 <div th:replace="footer :: footer"></div> <!--This is the footer fragment-->
 </body>

@@ -1,0 +1,28 @@
+.cardcontainer {
+  display: flex !important ;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.container3 {
+  margin-top: 40px;
+  min-height: 53.2vh;
+}
+
+.tabss {
+  width: 15% !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #09aaa8 !important;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: black;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}

@@ -22,7 +22,8 @@ public class Admin implements UserDetails {
     private String profilePic; //we might make it uploaded
     private String authority = "Admin";
 
-    @OneToMany(mappedBy = "admin")
+    @OneToMany(mappedBy = "admin",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Clinic> clinic = new HashSet<Clinic>();
 
     /////////////////////////////////////// constructor ////////////////////////////////////

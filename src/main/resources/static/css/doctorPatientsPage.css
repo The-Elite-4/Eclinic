@@ -1,0 +1,42 @@
+.container2 {
+  margin-top: 60px;
+  min-height: 58vh;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.all-info-icon {
+  font-size: 24px;
+  color: rgba(17, 17, 17, 0.753);
+}
+
+.all-info-icon:hover {
+  color: rgba(17, 17, 17, 0.432);
+}
+
+.all-info-icon2 {
+  font-size: 23px;
+}
+
+.all-info-icon2:hover {
+  color: rgba(0, 151, 252, 0.712);
+}
+
+.breadcrumb fas {
+  color: black;
+}
+
+.table {
+  margin-bottom: 160px;
+}
+
+.main-breadcrumb a {
+  text-decoration: none;
+  color: black;
+}
+
+.main-breadcrumb a:hover {
+  color: #09aaa8;
+}

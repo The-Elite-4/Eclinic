@@ -22,9 +22,9 @@ public class Doctor implements UserDetails {
     private String profilePic; //we might make it uploaded
     private String signatureUrl;
     private String gender;
-    private Integer phoneNumber;
+    private String phoneNumber;
 
-    private Integer certificateId;
+    private String certificateId;
     private String doctorMajor;
 
     private String authority = "Doctor";
@@ -32,12 +32,9 @@ public class Doctor implements UserDetails {
     @ManyToOne
     private Clinic clinic;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Prescription> prescription = new HashSet<Prescription>();
-
-    @OneToMany(mappedBy = "doctor")
-    private Set<Patient> patient = new HashSet<>();
-
 
     ////////////////////////////////////constructor//////////////////////////////////////
 
@@ -45,7 +42,7 @@ public class Doctor implements UserDetails {
     }
 
     public Doctor(String username, String password, String firstName, String lastName, String profilePic,
-                  String signatureUrl, String gender, Integer phoneNumber, Integer certificateId, String doctorMajor
+                  String signatureUrl, String gender, String phoneNumber, String certificateId, String doctorMajor
             , Clinic clinic) {
         this.username = username;
         this.password = password;
@@ -157,19 +154,19 @@ public class Doctor implements UserDetails {
         this.gender = gender;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getCertificateId() {
+    public String getCertificateId() {
         return certificateId;
     }
 
-    public void setCertificateId(Integer certificateId) {
+    public void setCertificateId(String certificateId) {
         this.certificateId = certificateId;
     }
 
