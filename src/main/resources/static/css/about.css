@@ -18,7 +18,7 @@ body {
 }
 #team h2::after {
   content: "";
-  border-bottom: 2px solid #09aaa8;
+  border-bottom: 2px solid #007775;
   position: absolute;
   bottom: 0px;
   right: 0px;

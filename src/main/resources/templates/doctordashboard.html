@@ -28,9 +28,6 @@
             <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
                     type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">All Patients
             </button>
-            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                    type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">My schedule
-            </button>
         </div>
         <!-------------------------------------- patients tab ------------------------------------------------>
         <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
@@ -67,29 +64,8 @@
                     </tr>
                 </table>
             </div>
-
-            <!--------------------------------------- scedule tab ------------------------------->
-            <div style="width: 90%;" class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                 aria-labelledby="v-pills-profile-tab">
-                <h2>My schedule</h2>
-                <!--            <table class="table table-striped table-hover">-->
-                <!--                <tr>-->
-                <!--                    <th>profilePic</th>-->
-                <!--                    <th>Name</th>-->
-                <!--                    <th>gender</th>-->
-                <!--                    <th>phoneNumber</th>-->
-                <!--                </tr>-->
-                <!--                <tr th:each="secretary : ${secretaries}">-->
-                <!--                    <td th:text="${secretary.profilePic}"></td>-->
-                <!--                    <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>-->
-                <!--                    <td th:text="${secretary.gender}"></td>-->
-                <!--                    <td th:text="${secretary.phoneNumber}"></td>-->
-                <!--                </tr>-->
-                <!--            </table>-->
-            </div>
         </div>
     </div>
-
     <!------------------------------------ Prescription Modal ------------------------------------------------------>
 
     <div th:if="${showPresModal}" class="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static"

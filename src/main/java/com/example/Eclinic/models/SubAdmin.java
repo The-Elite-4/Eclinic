@@ -21,7 +21,7 @@ public class SubAdmin implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    private String profilePic; //we might make it uploaded
+    private String profilePic;
     private String gender;
     private boolean isEnabled;
     // verification fields

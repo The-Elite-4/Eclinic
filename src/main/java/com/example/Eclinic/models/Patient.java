@@ -17,7 +17,7 @@ public class Patient {
     private String lastName;
     private String gender;
     private String dateOfBirth;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private Integer weight;
     private Integer age;
     private String drugAllergies;
@@ -34,7 +34,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String firstName, String lastName, String gender, String dateOfBirth, Integer phoneNumber,
+    public Patient(String firstName, String lastName, String gender, String dateOfBirth, String phoneNumber,
                    Integer weight, Integer age, String drugAllergies, Clinic clinic) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -89,11 +89,11 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -21,7 +21,7 @@ public class Secretary implements UserDetails {
     private String firstName;
     private String lastName;
     private String gender;
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     private String profilePic; //we might make it uploaded
 
@@ -36,7 +36,7 @@ public class Secretary implements UserDetails {
     }
 
     public Secretary(String username, String password, String firstName, String lastName, String gender,
-                     Integer phoneNumber, String profilePic, Clinic clinic) {
+                     String phoneNumber, String profilePic, Clinic clinic) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -128,11 +128,11 @@ public class Secretary implements UserDetails {
         this.gender = gender;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -21,7 +21,7 @@ public class Clinic {
     private String name;
     private String address;
     private String description;
-    private Integer phoneNumber;
+    private String phoneNumber;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -56,7 +56,7 @@ public class Clinic {
     public Clinic() {
     }
 
-    public Clinic(String name, String address, String description, Integer phoneNumber, String licenseId,
+    public Clinic(String name, String address, String description, String phoneNumber, String licenseId,
                   String logo, Admin admin) {
         this.name = name;
         this.address = address;
@@ -100,11 +100,11 @@ public class Clinic {
         this.description = description;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

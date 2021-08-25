@@ -22,7 +22,7 @@ public class Doctor implements UserDetails {
     private String profilePic; //we might make it uploaded
     private String signatureUrl;
     private String gender;
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     private String certificateId;
     private String doctorMajor;
@@ -42,7 +42,7 @@ public class Doctor implements UserDetails {
     }
 
     public Doctor(String username, String password, String firstName, String lastName, String profilePic,
-                  String signatureUrl, String gender, Integer phoneNumber, String certificateId, String doctorMajor
+                  String signatureUrl, String gender, String phoneNumber, String certificateId, String doctorMajor
             , Clinic clinic) {
         this.username = username;
         this.password = password;
@@ -154,11 +154,11 @@ public class Doctor implements UserDetails {
         this.gender = gender;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

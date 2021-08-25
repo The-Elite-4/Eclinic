@@ -23,7 +23,6 @@ public class Medicine {
     private Prescription prescription;
     ////////////////////////////////////constructor////////////////////////////////////////
 
-
     public Medicine() {
     }
 
