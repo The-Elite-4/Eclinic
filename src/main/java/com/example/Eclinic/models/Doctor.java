@@ -35,6 +35,9 @@ public class Doctor implements UserDetails {
     @OneToMany(mappedBy = "doctor")
     private Set<Prescription> prescription = new HashSet<Prescription>();
 
+    @OneToMany(mappedBy = "doctor")
+    private Set<Patient> patient = new HashSet<>();
+
 
     ////////////////////////////////////constructor//////////////////////////////////////
 

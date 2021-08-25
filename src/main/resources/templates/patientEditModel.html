@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div th:if="${show}" th:fragment="patientEditModal" class="modal fade show d-block" id="staticBackdrop4" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Patient: </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{'/editPatient/'+${onePatient.id}}" th:object="${patient}" method="post">
+                    <div class="mb-3">
+                        <label class="form-check-label" for="firstName">First Name </label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" th:value="${onePatient.firstName}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="lastName">Last Name </label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" th:value="${onePatient.lastName}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" name="gender" id="gender" th:value="${onePatient.gender}">
+                            <option th:value="Male" th:text="Male" selected></option>
+                            <option th:value="Female" th:text="Female"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="dateOfBirth">Date of birth </label>
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" th:value="${onePatient.dateOfBirth}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="phoneNumber">Phone Number </label>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" th:value="${onePatient.phoneNumber}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="weight">Weight </label>
+                        <input type="number" class="form-control" id="weight" name="weight" th:value="${onePatient.weight}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="age">Age </label>
+                        <input type="number" class="form-control" id="age" name="age" th:value="${onePatient.age}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-check-label" for="drugAllergies">Drug Allergies </label>
+                        <input type="text" class="form-control" id="drugAllergies" name="drugAllergies" th:value="${onePatient.drugAllergies}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
