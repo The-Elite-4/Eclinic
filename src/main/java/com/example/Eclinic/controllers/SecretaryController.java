@@ -43,11 +43,18 @@ public class SecretaryController {
 //    }
 
     @GetMapping("/secretary")
-    public String getSecretaryDashboard(Model m){
-        m.addAttribute("patients", patientRepo.findAll());
+    public String getSecretaryDashboard(Model m, Principal p){
+        Integer clinicId = secretaryRepo.findByUsername(p.getName()).getClinic().getId();
+        m.addAttribute("patients", patientRepo.findAllByClinicIdOrderByIdAsc(clinicId));
+        m.addAttribute("doctors", doctorRepo.findAllByClinicIdOrderByIdAsc(clinicId));
         m.addAttribute("patient", new Patient());
+        m.addAttribute("doctor", new Doctor());
+
+        m.addAttribute("onePatient", new Patient());
+        m.addAttribute("show",false);
         return "secretarydashboard.html";
     }
+
 
     @GetMapping ("/deleteSecretary/{id}")
     public RedirectView deleteSecretary(@PathVariable Integer id){
@@ -84,5 +91,11 @@ public class SecretaryController {
         oldSec.setProfilePic(secretary.getProfilePic());
         secretaryRepo.save(oldSec);
         return new RedirectView("/subAdminPanel");
+    }
+
+    @GetMapping("/secretary/{id}")
+    public String showSecretaryProfile(@PathVariable Integer id, Model m){
+        m.addAttribute("secretary", secretaryRepo.findById(id).get());
+        return "singlesecretary.html";
     }
 }

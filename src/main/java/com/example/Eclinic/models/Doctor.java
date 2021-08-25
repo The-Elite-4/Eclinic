@@ -35,6 +35,7 @@ public class Doctor implements UserDetails {
     @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Prescription> prescription = new HashSet<Prescription>();
+
     ////////////////////////////////////constructor//////////////////////////////////////
 
     public Doctor() {

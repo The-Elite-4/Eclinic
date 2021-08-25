@@ -1,8 +1,9 @@
 package com.example.Eclinic.controllers;
 
 import com.example.Eclinic.models.*;
+import com.example.Eclinic.repositories.PatientRepo;
+import com.example.Eclinic.repositories.PrescriptionRepo;
 import com.example.Eclinic.repositories.*;
-import javassist.expr.Instanceof;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +16,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+
+import com.example.Eclinic.repositories.DoctorRepo;
+import com.example.Eclinic.repositories.SecretaryRepo;
+import com.example.Eclinic.repositories.SubAdminRepo;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.security.Principal;
-import java.util.Arrays;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -167,5 +175,25 @@ public class DoctorController {
         m.addAttribute("showSec", false);
         return "subAdmindashboard.html";
     }
+
+
+
+    @GetMapping("/doctor/{id}")
+    public String getASpecificPatient(@PathVariable Integer id, Model m){
+        Set<Patient> patients;
+        Set<Patient> savedPatients = new HashSet<>();
+        Set<Prescription> prescriptions = prescriptionRepo.findPrescriptionIdByDoctorId(id);
+        for(Prescription pre : prescriptions){
+            System.out.println(pre.getId());
+            patients = patientRepo.findByPrescriptionId(pre.getId());
+            savedPatients.addAll(patients);
+            System.out.println(savedPatients);
+        }
+        System.out.println(savedPatients);
+        m.addAttribute("patient", savedPatients);
+
+        return "patientsofsingledoctor.html";
+    }
+
 }
 

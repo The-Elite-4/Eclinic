@@ -26,7 +26,7 @@ public class Prescription {
     @ManyToOne(fetch = FetchType.LAZY)
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Patient patient;
 
     @OneToMany(mappedBy = "prescription",fetch = FetchType.LAZY,

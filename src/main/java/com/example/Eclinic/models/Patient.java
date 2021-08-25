@@ -1,5 +1,8 @@
 package com.example.Eclinic.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +22,6 @@ public class Patient {
     private Integer age;
     private String drugAllergies;
 
-    
     @ManyToOne
     private Clinic clinic;
 
