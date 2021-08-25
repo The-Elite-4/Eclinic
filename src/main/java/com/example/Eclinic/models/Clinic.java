@@ -27,7 +27,7 @@ public class Clinic {
     @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
-    private Integer licenseId;
+    private String licenseId;
     private String logo;
 
     @ManyToOne
@@ -37,7 +37,8 @@ public class Clinic {
 //    @JoinColumn(name = "subAdmin_id", referencedColumnName = "id")
 //    private SubAdmin subAdmin;
     ///////////////////////////////////////// new
-    @OneToMany(mappedBy = "clinic")
+    @OneToMany(mappedBy = "clinic",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<SubAdmin> subAdmin = new HashSet<>();
     /////////////////////////////////////////
 
@@ -55,7 +56,7 @@ public class Clinic {
     public Clinic() {
     }
 
-    public Clinic(String name, String address, String description, Integer phoneNumber, Integer licenseId,
+    public Clinic(String name, String address, String description, Integer phoneNumber, String licenseId,
                   String logo, Admin admin) {
         this.name = name;
         this.address = address;
@@ -115,11 +116,11 @@ public class Clinic {
         this.createdAt = createdAt;
     }
 
-    public Integer getLicenseId() {
+    public String getLicenseId() {
         return licenseId;
     }
 
-    public void setLicenseId(Integer licenseId) {
+    public void setLicenseId(String licenseId) {
         this.licenseId = licenseId;
     }
 

@@ -23,7 +23,8 @@ public class Patient {
     @ManyToOne
     private Clinic clinic;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Prescription> prescription = new HashSet<Prescription>();
 
     ////////////////////////////////////constructor////////////////////////////////////////

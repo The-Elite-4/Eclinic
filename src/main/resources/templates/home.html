@@ -11,7 +11,7 @@
     <title>Home Page</title>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-<section id="banner" class="banner" th:style="'background: url(/images/bg-banner.jpg) no-repeat fixed;'">
+<section id="banner" class="banner" th:style="'background: url(/images/bg-banner.jpg) no-repeat center;background-size:cover' ">
     <div th:replace="header :: header"></div> <!---------- this is fragment ------------>
     <div class="bg-color">
         <div class="container">
@@ -21,7 +21,7 @@
                         <img th:src="@{/images/logo.png}" class="img-responsive">
                     </div>
                     <div class="banner-text text-center">
-                        <h1 class="white">Healthcare at your desk!!</h1>
+                        <h1 class="white">Healthcare at your desk</h1>
                         <p>The smart choice in clinic management software</p>
                         <a href="/signup" class="btn btn-appoint">Add Clinic</a>
                     </div>
@@ -134,11 +134,11 @@
                 <h2 class="ser-title">See Our Clinics!</h2>
                 <hr class="botm-line">
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6" th:each="clinic: ${allClinics}">
-                <div class="thumbnail" >
-                    <img th:src="${clinic.logo}" alt="..." class="team-img">
+            <div class="col-md-3 col-sm-3 col-xs-6 card22" th:each="clinic: ${allClinics}">
+                <div class="thumbnail card11">
+                    <img th:src="${clinic.logo}" alt="..." class="team-img cardimg1">
                     <div class="caption">
-                        <h3 th:text="${clinic.name}"></h3>
+                        <h4 th:text="${clinic.name}"></h4>
                         <p th:text="${clinic.address}"></p>
                         <p th:text="${clinic.description}"></p>
                         <ul class="list-inline">

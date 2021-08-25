@@ -123,7 +123,7 @@
                         <th>Delete</th>
                     </tr>
                     <tr th:each="doctor : ${doctors}">
-                        <td th:text="${doctor.profilePic}"></td>
+                        <td><img th:src="${doctor.profilePic}" alt="profile-pic" class="table-img"></td>
                         <td th:text="${doctor.firstName} + ' ' + ${doctor.lastName}"></td>
                         <td th:text="${doctor.gender}"></td>
                         <td th:text="${doctor.phoneNumber}"></td>
@@ -150,16 +150,16 @@
                         <th>Delete</th>
                     </tr>
                     <tr th:each="secretary : ${secretaries}">
-                        <td th:text="${secretary.profilePic}"></td>
+                        <td><img th:src="${secretary.profilePic}" alt="profile-pic" class="table-img"></td>
                         <td th:text="${secretary.firstName} + ' ' + ${secretary.lastName}"></td>
                         <td th:text="${secretary.gender}"></td>
                         <td th:text="${secretary.phoneNumber}"></td>
                         <td>
                             <a th:href="@{'/getSecretary/'+${secretary.id}}" id="editSecretaryModal">
-                                <i class="fas fa-pen"></i>
+                                <i class="fas fa-pen edit11"></i>
                             </a>
                         </td>
-                        <td><a th:href="${'/deleteSecretary/' + secretary.id}"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a th:href="${'/deleteSecretary/' + secretary.id}"><i class="fas fa-trash-alt delete11"></i></a></td>
                     </tr>
                 </table>
             </div>

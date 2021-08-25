@@ -1,9 +1,10 @@
 .cardcontainer {
   display: flex !important ;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .container3 {
-  margin-top: 20px;
+  margin-top: 40px;
   min-height: 53.2vh;
 }
 

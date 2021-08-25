@@ -8,7 +8,11 @@
 }
 
 .tabss {
-  width: 15% !important;
+  width: 17% !important;
+  border-right: 1px solid lightgray;
+  height: 191px;
+  padding-right: 17px;
+  font-size: 18px;
 }
 
 .nav-pills .nav-link.active,
@@ -28,7 +32,19 @@
 
 .delete11,
 .edit11 {
-  font-size: 20px;
+  font-size: 23px;
+}
+
+.edit11:hover {
+  color: rgb(58, 160, 255);
+}
+
+.delete11 {
+  color: rgb(189, 4, 4);
+}
+
+.delete11:hover {
+  color: rgb(250, 83, 83);
 }
 
 .btn-container {
@@ -46,4 +62,14 @@
   background-color: white;
   border: 1px solid #09aaa8;
   color: black;
+}
+
+.table-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.table td {
+  vertical-align: middle;
 }

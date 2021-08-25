@@ -1,5 +1,18 @@
 .all-info-icon {
   font-size: 30px;
+  color: rgba(17, 17, 17, 0.753);
+}
+
+.all-info-icon:hover {
+  color: rgba(17, 17, 17, 0.432);
+}
+
+.all-info-icon2 {
+  font-size: 30px;
+}
+
+.all-info-icon2:hover {
+  color: rgba(0, 151, 252, 0.712);
 }
 
 .addmedicine {
@@ -45,7 +58,11 @@
 }
 
 .tabss {
-  width: 15% !important;
+  width: 17% !important;
+  border-right: 1px solid lightgray;
+  height: 191px;
+  padding-right: 17px;
+  font-size: 18px;
 }
 
 .nav-pills .nav-link.active,
@@ -64,5 +81,6 @@
 }
 
 .Maincontainer {
-  min-height: 23.65rem;
+  margin-top: 50px;
+  min-height: 24rem;
 }

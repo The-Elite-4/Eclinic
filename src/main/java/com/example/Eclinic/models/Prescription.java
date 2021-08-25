@@ -23,7 +23,7 @@ public class Prescription {
     private String diagnosis;
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Doctor doctor;
 
     @ManyToOne

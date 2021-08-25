@@ -27,30 +27,35 @@
                     type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Active
             </button>
             <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                    type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Postponed
+                    type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Pending
             </button>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active cardcontainer" id="v-pills-home" role="tabpanel"
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                  aria-labelledby="v-pills-home-tab">
-                <div class="card" style="width: 18rem;" th:each="acceptedSub : ${acceptedSubs}">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${acceptedSub.clinic.name}"></h5>
-                        <p class="card-text" th:text="${acceptedSub.clinic.address}"></p>
-                        <p>Owner name: <span class="card-text" th:text="${acceptedSub.username}"></span></p>
-                        <p>License ID: <span class="card-text" th:text="${acceptedSub.clinic.licenseId}"></span></p>
+                <div class="cardcontainer">
+                    <div class="card" style="width: 18rem;" th:each="acceptedSub : ${acceptedSubs}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${acceptedSub.clinic.name}"></h5>
+                            <p class="card-text" th:text="${acceptedSub.clinic.address}"></p>
+                            <p>Owner name: <span class="card-text" th:text="${acceptedSub.username}"></span></p>
+                            <p>License ID: <span class="card-text" th:text="${acceptedSub.clinic.licenseId}"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade cardcontainer" id="v-pills-profile" role="tabpanel"
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                  aria-labelledby="v-pills-profile-tab">
-                <div class="card" style="width: 18rem;" th:each="postponedSub : ${postponedSubs}">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${postponedSub.clinic.name}"></h5>
-                        <p class="card-text" th:text="${postponedSub.clinic.address}"></p>
-                        <p>Owner name: <span class="card-text" th:text="${postponedSub.username}"></span></p>
-                        <p>License ID: <span class="card-text" th:text="${postponedSub.clinic.licenseId}"></span></p>
-                        <a th:href="@{'/acceptSubAdmin/' + ${postponedSub.id}}" class="btn btn-success">Accept</a>
+                <div class="cardcontainer">
+                    <div class="card" style="width: 18rem;" th:each="postponedSub : ${postponedSubs}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${postponedSub.clinic.name}"></h5>
+                            <p class="card-text" th:text="${postponedSub.clinic.address}"></p>
+                            <p>Owner name: <span class="card-text" th:text="${postponedSub.username}"></span></p>
+                            <p>License ID: <span class="card-text" th:text="${postponedSub.clinic.licenseId}"></span>
+                            </p>
+                            <a th:href="@{'/acceptSubAdmin/' + ${postponedSub.id}}" class="btn btn-success">Accept</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@ public class Doctor implements UserDetails {
     private String gender;
     private Integer phoneNumber;
 
-    private Integer certificateId;
+    private String certificateId;
     private String doctorMajor;
 
     private String authority = "Doctor";
@@ -32,7 +32,8 @@ public class Doctor implements UserDetails {
     @ManyToOne
     private Clinic clinic;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Prescription> prescription = new HashSet<Prescription>();
     ////////////////////////////////////constructor//////////////////////////////////////
 
@@ -40,7 +41,7 @@ public class Doctor implements UserDetails {
     }
 
     public Doctor(String username, String password, String firstName, String lastName, String profilePic,
-                  String signatureUrl, String gender, Integer phoneNumber, Integer certificateId, String doctorMajor
+                  String signatureUrl, String gender, Integer phoneNumber, String certificateId, String doctorMajor
             , Clinic clinic) {
         this.username = username;
         this.password = password;
@@ -160,11 +161,11 @@ public class Doctor implements UserDetails {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getCertificateId() {
+    public String getCertificateId() {
         return certificateId;
     }
 
-    public void setCertificateId(Integer certificateId) {
+    public void setCertificateId(String certificateId) {
         this.certificateId = certificateId;
     }
 
