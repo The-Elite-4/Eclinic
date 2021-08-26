@@ -51,6 +51,8 @@ As a person who wants to create his own clinic needs to follow those instruction
 
   - Spring boot.
 
+  - Thymeleaf.
+
   - Gradle.
 
   - JQuery.
