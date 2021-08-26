@@ -72,7 +72,7 @@ public class AuthControllers {
     @PostMapping("/signup")
     public RedirectView addSubAdmin(@ModelAttribute SubAdmin subAdmin, @RequestParam String name,
                                     @RequestParam String address,@RequestParam String description,
-                                    @RequestParam Integer phoneNumber,@RequestParam String logo){
+                                    @RequestParam String phoneNumber,@RequestParam String logo){
 
         Admin admin = adminRepo.findById(1).get();
         Clinic clinic = new Clinic(name,address,description,phoneNumber, subAdmin.getLicenseId(), logo,admin);
